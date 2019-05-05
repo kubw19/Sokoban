@@ -1,12 +1,15 @@
 package com;
 
+import fIgures.Square;
+
 import javax.swing.*;
+import java.io.IOException;
 
 public class Window {
 
     public static int width = 300;
     public static int height = width / 16 * 9;
-    public static int scale = 3;
+    public static int scale = 6;
 
     public JFrame frame;
 
@@ -24,7 +27,8 @@ public class Window {
 
     public static void main(String[] args){
 
-        Game g = new Game();
+        Game g = new Game(scale);
         Window window = new Window(g);
+
     }
 }
