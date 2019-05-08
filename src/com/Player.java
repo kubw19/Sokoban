@@ -1,15 +1,15 @@
 package com;
 
+import fIgures.Square;
+
 import java.awt.*;
 
-public class Player {
+public class Player  {
     private int moves = 0;
-
 
     public void draw(Game game, Graphics gr){
         gr.setColor(Color.RED);
-        int posX = (game.getPlayersPosition().getX() * game.getGridSize()) + game.getRelativeX() - game.getBrickSize()/2;
-        int posY = (game.getPlayersPosition().getY() * game.getGridSize()) + game.getRelativeY()  - game.getBrickSize()/2;
-        gr.fillRect(posX,posY,game.getBrickSize(), game.getBrickSize());
+        Vector2d w = Game.getNormalizedPosition(game.getPlayersPosition().getX(),game.getPlayersPosition().getY());
+        gr.fillRect(w.getX(),w.getY(),Game.getBrickSize(), Game.getBrickSize());
     }
 }

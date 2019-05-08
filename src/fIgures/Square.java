@@ -1,16 +1,19 @@
 package fIgures;
-import java.awt.*;
+import com.Vector2d;
 
-public class Square extends Figure {
+import java.awt.*;
+import java.awt.image.BufferedImage;
+
+public class Square{
+    protected int size;
+    protected BufferedImage texture;
+    private Graphics graphics;
     public Square(int size, Graphics gr){
-        super(size, size, gr);
+        this.size = size;
+        this.graphics = gr;
     }
 
-    public void draw(int positionX, int positionY, boolean centered){
-        if(centered){
-            positionX -= width / 2;
-            positionY -= height / 2;
-        }
-        graphics.drawImage(texture, positionX,positionY, width, height,null);
+    public void draw(Vector2d w){
+        graphics.drawImage(texture, w.getX(),w.getY(), size, size,null);
     }
 }

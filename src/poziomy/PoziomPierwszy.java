@@ -17,34 +17,34 @@ public class PoziomPierwszy implements Poziom {
 
     public void draw(Game game, Graphics gr) {
 
-        new Brick(gr, game.getBrickSize()).draw(game.getRelativeX() + 1 * game.getGridSize(), game.getRelativeY() + 2 * game.getGridSize(), true);
-        new Brick(gr, game.getBrickSize()).draw(game.getRelativeX() + 0 * game.getGridSize(), game.getRelativeY() + 2 * game.getGridSize(), true);
-        new Brick(gr, game.getBrickSize()).draw(game.getRelativeX() - 1 * game.getGridSize(), game.getRelativeY() + 2 * game.getGridSize(), true);
-        new Brick(gr, game.getBrickSize()).draw(game.getRelativeX() + 1 * game.getGridSize(), game.getRelativeY() + 1 * game.getGridSize(), true);
-        new Brick(gr, game.getBrickSize()).draw(game.getRelativeX() + 1 * game.getGridSize(), game.getRelativeY() + 0 * game.getGridSize(), true);
-        new Brick(gr, game.getBrickSize()).draw(game.getRelativeX() + 1 * game.getGridSize(), game.getRelativeY() - 1 * game.getGridSize(), true);
-        new Brick(gr, game.getBrickSize()).draw(game.getRelativeX() + 2 * game.getGridSize(), game.getRelativeY() - 1 * game.getGridSize(), true);
-        new Brick(gr, game.getBrickSize()).draw(game.getRelativeX() + 3 * game.getGridSize(), game.getRelativeY() - 1 * game.getGridSize(), true);
-        new Brick(gr, game.getBrickSize()).draw(game.getRelativeX() + 3 * game.getGridSize(), game.getRelativeY() - 2 * game.getGridSize(), true);
-        new Brick(gr, game.getBrickSize()).draw(game.getRelativeX() + 3 * game.getGridSize(), game.getRelativeY() - 3 * game.getGridSize(), true);
-        new Brick(gr, game.getBrickSize()).draw(game.getRelativeX() + 2 * game.getGridSize(), game.getRelativeY() - 3 * game.getGridSize(), true);
-        new Brick(gr, game.getBrickSize()).draw(game.getRelativeX() + 1 * game.getGridSize(), game.getRelativeY() - 3 * game.getGridSize(), true);
-        new Brick(gr, game.getBrickSize()).draw(game.getRelativeX() + 0 * game.getGridSize(), game.getRelativeY() - 3 * game.getGridSize(), true);
-        new Brick(gr, game.getBrickSize()).draw(game.getRelativeX() + 0 * game.getGridSize(), game.getRelativeY() - 4 * game.getGridSize(), true);
-        new Brick(gr, game.getBrickSize()).draw(game.getRelativeX() + 0 * game.getGridSize(), game.getRelativeY() - 5 * game.getGridSize(), true);
-        new Brick(gr, game.getBrickSize()).draw(game.getRelativeX() - 1 * game.getGridSize(), game.getRelativeY() - 5 * game.getGridSize(), true);
-        new Brick(gr, game.getBrickSize()).draw(game.getRelativeX() - 2 * game.getGridSize(), game.getRelativeY() - 5 * game.getGridSize(), true);
-        new Brick(gr, game.getBrickSize()).draw(game.getRelativeX() - 2 * game.getGridSize(), game.getRelativeY() - 4 * game.getGridSize(), true);
-        new Brick(gr, game.getBrickSize()).draw(game.getRelativeX() - 2 * game.getGridSize(), game.getRelativeY() - 3 * game.getGridSize(), true);
-        new Brick(gr, game.getBrickSize()).draw(game.getRelativeX() - 2 * game.getGridSize(), game.getRelativeY() - 2 * game.getGridSize(), true);
-        new Brick(gr, game.getBrickSize()).draw(game.getRelativeX() - 3 * game.getGridSize(), game.getRelativeY() - 2 * game.getGridSize(), true);
-        new Brick(gr, game.getBrickSize()).draw(game.getRelativeX() - 4 * game.getGridSize(), game.getRelativeY() - 2 * game.getGridSize(), true);
-        new Brick(gr, game.getBrickSize()).draw(game.getRelativeX() - 4 * game.getGridSize(), game.getRelativeY() - 1 * game.getGridSize(), true);
-        new Brick(gr, game.getBrickSize()).draw(game.getRelativeX() - 4 * game.getGridSize(), game.getRelativeY() - 0 * game.getGridSize(), true);
-        new Brick(gr, game.getBrickSize()).draw(game.getRelativeX() - 3 * game.getGridSize(), game.getRelativeY() - 0 * game.getGridSize(), true);
-        new Brick(gr, game.getBrickSize()).draw(game.getRelativeX() - 2 * game.getGridSize(), game.getRelativeY() - 0 * game.getGridSize(), true);
-        new Brick(gr, game.getBrickSize()).draw(game.getRelativeX() - 1 * game.getGridSize(), game.getRelativeY() - 0 * game.getGridSize(), true);
-        new Brick(gr, game.getBrickSize()).draw(game.getRelativeX() - 1 * game.getGridSize(), game.getRelativeY() + 1 * game.getGridSize(), true);
+        new Brick(gr, game.getBrickSize()).draw(Game.getNormalizedPosition(1,2));
+        new Brick(gr, game.getBrickSize()).draw(Game.getNormalizedPosition(0,2));
+        new Brick(gr, game.getBrickSize()).draw(Game.getNormalizedPosition(-1,2));
+        new Brick(gr, game.getBrickSize()).draw(Game.getNormalizedPosition(1,1));
+        new Brick(gr, game.getBrickSize()).draw(Game.getNormalizedPosition(1,0));
+        new Brick(gr, game.getBrickSize()).draw(Game.getNormalizedPosition(1,-1));
+        new Brick(gr, game.getBrickSize()).draw(Game.getNormalizedPosition(2,-1));
+        new Brick(gr, game.getBrickSize()).draw(Game.getNormalizedPosition(3,-1));
+        new Brick(gr, game.getBrickSize()).draw(Game.getNormalizedPosition(3,-2));
+        new Brick(gr, game.getBrickSize()).draw(Game.getNormalizedPosition(3,-3));
+        new Brick(gr, game.getBrickSize()).draw(Game.getNormalizedPosition(2,-3));
+        new Brick(gr, game.getBrickSize()).draw(Game.getNormalizedPosition(1,-3));
+        new Brick(gr, game.getBrickSize()).draw(Game.getNormalizedPosition(0,-3));
+        new Brick(gr, game.getBrickSize()).draw(Game.getNormalizedPosition(0,-4));
+        new Brick(gr, game.getBrickSize()).draw(Game.getNormalizedPosition(0,-5));
+        new Brick(gr, game.getBrickSize()).draw(Game.getNormalizedPosition(-1,-5));
+        new Brick(gr, game.getBrickSize()).draw(Game.getNormalizedPosition(-2,-5));
+        new Brick(gr, game.getBrickSize()).draw(Game.getNormalizedPosition(-2,-4));
+        new Brick(gr, game.getBrickSize()).draw(Game.getNormalizedPosition(-2,-3));
+        new Brick(gr, game.getBrickSize()).draw(Game.getNormalizedPosition(-2,-2));
+        new Brick(gr, game.getBrickSize()).draw(Game.getNormalizedPosition(-3,-2));
+        new Brick(gr, game.getBrickSize()).draw(Game.getNormalizedPosition(-4,-2));
+        new Brick(gr, game.getBrickSize()).draw(Game.getNormalizedPosition(-4,-1));
+        new Brick(gr, game.getBrickSize()).draw(Game.getNormalizedPosition(-4,0));
+        new Brick(gr, game.getBrickSize()).draw(Game.getNormalizedPosition(-3,0));
+        new Brick(gr, game.getBrickSize()).draw(Game.getNormalizedPosition(-2,0));
+        new Brick(gr, game.getBrickSize()).draw(Game.getNormalizedPosition(-1,0));
+        new Brick(gr, game.getBrickSize()).draw(Game.getNormalizedPosition(-1,1));
     }
 
     public Vector2d getStartingPoint(){

@@ -15,7 +15,7 @@ public class Brick extends Square {
     }
 
     public int getSize(){
-        return width;
+        return size;
     }
 }
 

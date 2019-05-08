@@ -15,13 +15,21 @@ public class Game extends JPanel implements KeyListener {
     private PoziomPierwszy poziomPierwszy;
     private Vector2d playersPosition;
 
-    private int scale;
-    private int relativeX;
-    private int relativeY;
-    private int gridSize;
-    private int brickSize;
+    private static int scale;
+    private static int relativeX;
+    private static int relativeY;
+    private static int gridSize;
+    private static int brickSize;
 
 
+    public static Vector2d getNormalizedPosition(int x, int y){
+        Vector2d w = new Vector2d(x,y);
+
+        w.setX(relativeX + x * gridSize - brickSize/2);
+        w.setY(relativeY + y * gridSize - brickSize/2);
+
+        return w;
+    }
 
 
     public Game(int scale){
@@ -81,23 +89,23 @@ public class Game extends JPanel implements KeyListener {
     @Override
     public void keyReleased(KeyEvent e) { }
 
-    public int getScale() {
+    public static int getScale() {
         return scale;
     }
 
-    public int getRelativeX() {
+    public static int getRelativeX() {
         return relativeX;
     }
 
-    public int getRelativeY() {
+    public static int getRelativeY() {
         return relativeY;
     }
 
-    public int getGridSize() {
+    public static int getGridSize() {
         return gridSize;
     }
 
-    public int getBrickSize() {
+    public static int getBrickSize() {
         return brickSize;
     }
 
