@@ -4,47 +4,63 @@ import com.Poziom;
 import com.Game;
 import com.Vector2d;
 import fIgures.Brick;
+import fIgures.Square;
 
 import java.awt.*;
+import java.util.ArrayList;
 
-public class PoziomPierwszy implements Poziom {
+public class PoziomPierwszy extends Poziom {
 
     private Vector2d startingPoint;
+    private boolean built = false;
+    private Game game;
 
-    public PoziomPierwszy(){
+    public PoziomPierwszy(Game game){
+
+        objects = new ArrayList<>();
         startingPoint = new Vector2d(0,-1);
+        this.game = game;
     }
 
-    public void draw(Game game, Graphics gr) {
+    private void build(Game game, Graphics gr){
+        objects.add(new Brick(gr, game.getBrickSize(), Game.getNormalizedPosition(1,-2)));
+        objects.add(new Brick(gr, game.getBrickSize(), Game.getNormalizedPosition(0,-2)));
+        objects.add(new Brick(gr, game.getBrickSize(), Game.getNormalizedPosition(-1,-2)));
+        objects.add(new Brick(gr, game.getBrickSize(), Game.getNormalizedPosition(1,-1)));
+        objects.add(new Brick(gr, game.getBrickSize(), Game.getNormalizedPosition(1,0)));
+        objects.add(new Brick(gr, game.getBrickSize(), Game.getNormalizedPosition(1,1)));
+        objects.add(new Brick(gr, game.getBrickSize(), Game.getNormalizedPosition(2,1)));
+        objects.add(new Brick(gr, game.getBrickSize(), Game.getNormalizedPosition(3,1)));
+        objects.add(new Brick(gr, game.getBrickSize(), Game.getNormalizedPosition(3,2)));
+        objects.add(new Brick(gr, game.getBrickSize(), Game.getNormalizedPosition(3,3)));
+        objects.add(new Brick(gr, game.getBrickSize(), Game.getNormalizedPosition(2,3)));
+        objects.add(new Brick(gr, game.getBrickSize(), Game.getNormalizedPosition(1,3)));
+        objects.add(new Brick(gr, game.getBrickSize(), Game.getNormalizedPosition(0,3)));
+        objects.add(new Brick(gr, game.getBrickSize(), Game.getNormalizedPosition(0,4)));
+        objects.add(new Brick(gr, game.getBrickSize(), Game.getNormalizedPosition(0,5)));
+        objects.add(new Brick(gr, game.getBrickSize(), Game.getNormalizedPosition(-1,5)));
+        objects.add(new Brick(gr, game.getBrickSize(), Game.getNormalizedPosition(-2,5)));
+        objects.add(new Brick(gr, game.getBrickSize(), Game.getNormalizedPosition(-2,4)));
+        objects.add(new Brick(gr, game.getBrickSize(), Game.getNormalizedPosition(-2,3)));
+        objects.add(new Brick(gr, game.getBrickSize(), Game.getNormalizedPosition(-2,2)));
+        objects.add(new Brick(gr, game.getBrickSize(), Game.getNormalizedPosition(-3,2)));
+        objects.add(new Brick(gr, game.getBrickSize(), Game.getNormalizedPosition(-4,2)));
+        objects.add(new Brick(gr, game.getBrickSize(), Game.getNormalizedPosition(-4,1)));
+        objects.add(new Brick(gr, game.getBrickSize(), Game.getNormalizedPosition(-4,0)));
+        objects.add(new Brick(gr, game.getBrickSize(), Game.getNormalizedPosition(-3,0)));
+        objects.add(new Brick(gr, game.getBrickSize(), Game.getNormalizedPosition(-2,0)));
+        objects.add(new Brick(gr, game.getBrickSize(), Game.getNormalizedPosition(-1,0)));
+        objects.add(new Brick(gr, game.getBrickSize(), Game.getNormalizedPosition(-1,-1)));
+        this.built = true;
+    }
 
-        new Brick(gr, game.getBrickSize()).draw(Game.getNormalizedPosition(1,2));
-        new Brick(gr, game.getBrickSize()).draw(Game.getNormalizedPosition(0,2));
-        new Brick(gr, game.getBrickSize()).draw(Game.getNormalizedPosition(-1,2));
-        new Brick(gr, game.getBrickSize()).draw(Game.getNormalizedPosition(1,1));
-        new Brick(gr, game.getBrickSize()).draw(Game.getNormalizedPosition(1,0));
-        new Brick(gr, game.getBrickSize()).draw(Game.getNormalizedPosition(1,-1));
-        new Brick(gr, game.getBrickSize()).draw(Game.getNormalizedPosition(2,-1));
-        new Brick(gr, game.getBrickSize()).draw(Game.getNormalizedPosition(3,-1));
-        new Brick(gr, game.getBrickSize()).draw(Game.getNormalizedPosition(3,-2));
-        new Brick(gr, game.getBrickSize()).draw(Game.getNormalizedPosition(3,-3));
-        new Brick(gr, game.getBrickSize()).draw(Game.getNormalizedPosition(2,-3));
-        new Brick(gr, game.getBrickSize()).draw(Game.getNormalizedPosition(1,-3));
-        new Brick(gr, game.getBrickSize()).draw(Game.getNormalizedPosition(0,-3));
-        new Brick(gr, game.getBrickSize()).draw(Game.getNormalizedPosition(0,-4));
-        new Brick(gr, game.getBrickSize()).draw(Game.getNormalizedPosition(0,-5));
-        new Brick(gr, game.getBrickSize()).draw(Game.getNormalizedPosition(-1,-5));
-        new Brick(gr, game.getBrickSize()).draw(Game.getNormalizedPosition(-2,-5));
-        new Brick(gr, game.getBrickSize()).draw(Game.getNormalizedPosition(-2,-4));
-        new Brick(gr, game.getBrickSize()).draw(Game.getNormalizedPosition(-2,-3));
-        new Brick(gr, game.getBrickSize()).draw(Game.getNormalizedPosition(-2,-2));
-        new Brick(gr, game.getBrickSize()).draw(Game.getNormalizedPosition(-3,-2));
-        new Brick(gr, game.getBrickSize()).draw(Game.getNormalizedPosition(-4,-2));
-        new Brick(gr, game.getBrickSize()).draw(Game.getNormalizedPosition(-4,-1));
-        new Brick(gr, game.getBrickSize()).draw(Game.getNormalizedPosition(-4,0));
-        new Brick(gr, game.getBrickSize()).draw(Game.getNormalizedPosition(-3,0));
-        new Brick(gr, game.getBrickSize()).draw(Game.getNormalizedPosition(-2,0));
-        new Brick(gr, game.getBrickSize()).draw(Game.getNormalizedPosition(-1,0));
-        new Brick(gr, game.getBrickSize()).draw(Game.getNormalizedPosition(-1,1));
+    public void draw(Graphics gr) {
+        if(!built)this.build(game, gr);
+
+        for(Square square : objects){
+            square.draw(gr);
+        }
+
     }
 
     public Vector2d getStartingPoint(){
