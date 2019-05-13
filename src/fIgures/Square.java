@@ -1,4 +1,5 @@
 package fIgures;
+import com.Game;
 import com.Vector2d;
 
 import java.awt.*;
@@ -32,5 +33,17 @@ public class Square{
 
     public String toString(){
         return "(" + position.getX() + ", " + position.getY() + ")";
+    }
+    public void setX(int x){
+        this.position.setX(x);
+    }
+    public void setY(int y){
+        this.position.setX(y);
+    }
+    public int getX(){
+        return this.position.getX();
+    }
+    public int getY(){
+        return this.position.getY();
     }
 }

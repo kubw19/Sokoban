@@ -11,7 +11,6 @@ import javax.swing.*;
 public class Game extends JPanel implements KeyListener {
 
     private Player player;
-
     private Poziom obecnyPoziom;
     private PoziomPierwszy poziomPierwszy;
     public Vector2d playersPosition;
@@ -44,6 +43,7 @@ public class Game extends JPanel implements KeyListener {
         brickSize = 16 * scale;
 
         player = new Player(this);
+
         poziomPierwszy = new PoziomPierwszy(this);
         obecnyPoziom = poziomPierwszy;
         playersPosition = obecnyPoziom.getStartingPoint();

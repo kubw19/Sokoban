@@ -5,6 +5,7 @@ import com.Game;
 import com.Vector2d;
 import fIgures.Brick;
 import fIgures.Square;
+import fIgures.Box;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -51,6 +52,7 @@ public class PoziomPierwszy extends Poziom {
         objects.add(new Brick(gr, game.getBrickSize(), Game.getNormalizedPosition(-2,0)));
         objects.add(new Brick(gr, game.getBrickSize(), Game.getNormalizedPosition(-1,0)));
         objects.add(new Brick(gr, game.getBrickSize(), Game.getNormalizedPosition(-1,-1)));
+        objects.add(new Box(gr,game.getBrickSize(),Game.getNormalizedPosition(-1,1),game));
         this.built = true;
     }
 

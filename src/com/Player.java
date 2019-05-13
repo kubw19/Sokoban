@@ -2,6 +2,7 @@ package com;
 
 import fIgures.Brick;
 import fIgures.Square;
+import fIgures.Box;
 
 import java.awt.*;
 
@@ -40,9 +41,25 @@ public class Player  {
             if(square.intersectionArea.intersects(newPosition)){
                 if(square instanceof Brick)
                     return -1;
+                if(square instanceof Box) {
+                    switch(dir) {
+                        case "UP":
+                            ((Box)square).moveUp();
+                            break;
+                        case "DOWN":
+                            ((Box)square).moveDown();
+                            break;
+                        case "RIGHT":
+                            ((Box)square).moveRight();
+                            break;
+                        case "LEFT":
+                            ((Box)square).moveLeft();
+                            break;
+                    }
+                    return 0;
+                }
             }
         }
-
         return 0;
     }
 
