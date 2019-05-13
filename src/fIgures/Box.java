@@ -22,16 +22,16 @@ public class Box extends Square{
         Rectangle newPosition = null;
         switch(dir) {
             case "UP":
-                newPosition = new Rectangle(game.getPlayersPositionNormalized().getX(), game.getPlayersPositionNormalized(0,1).getY(), Game.getBrickSize(), Game.getBrickSize());
+                newPosition = new Rectangle(this.getX(), this.getY()+1, Game.getBrickSize(), Game.getBrickSize());
                 break;
             case "DOWN":
-                newPosition = new Rectangle(game.getPlayersPositionNormalized().getX(), game.getPlayersPositionNormalized(0,-1).getY(), Game.getBrickSize(), Game.getBrickSize());
+                newPosition = new Rectangle(this.getX(), this.getY()-1, Game.getBrickSize(), Game.getBrickSize());
                 break;
             case "RIGHT":
-                newPosition = new Rectangle(game.getPlayersPositionNormalized(1,0).getX(), game.getPlayersPositionNormalized().getY(), Game.getBrickSize(), Game.getBrickSize());
+                newPosition = new Rectangle(this.getX()+1, this.getY(), Game.getBrickSize(), Game.getBrickSize());
                 break;
             case "LEFT":
-                newPosition = new Rectangle(game.getPlayersPositionNormalized(-1,0).getX(), game.getPlayersPositionNormalized().getY(), Game.getBrickSize(), Game.getBrickSize());
+                newPosition = new Rectangle(this.getX()-1, this.getY(), Game.getBrickSize(), Game.getBrickSize());
                 break;
         }
 

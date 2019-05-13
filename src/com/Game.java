@@ -56,7 +56,7 @@ public class Game extends JPanel implements KeyListener {
         gr.setColor(new Color(122, 77, 46));
         gr.fillRect(0,0,getWidth(), getHeight());
 
-        poziomPierwszy.draw(gr);
+        obecnyPoziom.draw(gr);
         player.draw(gr);
 
     }
