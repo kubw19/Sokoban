@@ -52,7 +52,7 @@ public class PoziomPierwszy extends Poziom {
         objects.add(new Brick(gr, game.getBrickSize(), Game.getNormalizedPosition(-2,0)));
         objects.add(new Brick(gr, game.getBrickSize(), Game.getNormalizedPosition(-1,0)));
         objects.add(new Brick(gr, game.getBrickSize(), Game.getNormalizedPosition(-1,-1)));
-        objects.add(new Box(gr,game.getBrickSize(),Game.getNormalizedPosition(-1,1),game));
+        objects.add(new Box(gr,game.getBrickSize(),Game.getNormalizedPosition(0,1),game));
         this.built = true;
     }
 

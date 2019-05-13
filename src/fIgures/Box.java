@@ -22,16 +22,16 @@ public class Box extends Square{
         Rectangle newPosition = null;
         switch(dir) {
             case "UP":
-                newPosition = new Rectangle(this.getX(), this.getY()+1, Game.getBrickSize(), Game.getBrickSize());
+                newPosition = new Rectangle(this.getX(), this.getY()+this.size, Game.getBrickSize(), Game.getBrickSize());
                 break;
             case "DOWN":
-                newPosition = new Rectangle(this.getX(), this.getY()-1, Game.getBrickSize(), Game.getBrickSize());
+                newPosition = new Rectangle(this.getX(), this.getY()-this.size, Game.getBrickSize(), Game.getBrickSize());
                 break;
             case "RIGHT":
-                newPosition = new Rectangle(this.getX()+1, this.getY(), Game.getBrickSize(), Game.getBrickSize());
+                newPosition = new Rectangle(this.getX()+this.size, this.getY(), Game.getBrickSize(), Game.getBrickSize());
                 break;
             case "LEFT":
-                newPosition = new Rectangle(this.getX()-1, this.getY(), Game.getBrickSize(), Game.getBrickSize());
+                newPosition = new Rectangle(this.getX()-this.size, this.getY(), Game.getBrickSize(), Game.getBrickSize());
                 break;
         }
 
@@ -44,24 +44,30 @@ public class Box extends Square{
 
         return 0;
     }
-    public void moveUp() {
+    public boolean moveUp() {
         if (collisionDetection("UP") == 0) {
-            this.setY(this.getY() + 1);
+            this.setY(this.getY() + this.size);
+            return false;
         }
+        return true;
     }
 
     public void moveDown(){
-        if(collisionDetection("DOWN") == 0)
-            this.setY(this.getY() - 1);
+        if(collisionDetection("DOWN") == 0) {
+            this.setY(this.getY() - this.size);
+        }
     }
 
     public void moveRight(){
         if(collisionDetection("RIGHT") == 0)
-            this.setX(this.getX() + 1);
+            this.setX(this.getX() +this.size);
     }
 
-    public void moveLeft(){
-        if(collisionDetection("LEFT") == 0)
-            this.setX(this.getX() - 1);
+    public boolean moveLeft(){
+        if(collisionDetection("LEFT") == 0) {
+            this.setX(this.getX() - this.size);
+            return false;
+        }
+        return true;
     }
 }

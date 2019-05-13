@@ -44,7 +44,9 @@ public class Player  {
                 if(square instanceof Box) {
                     switch(dir) {
                         case "UP":
-                            ((Box)square).moveUp();
+                            if(((Box)square).moveUp()) {
+                            return -1;
+                            }
                             break;
                         case "DOWN":
                             ((Box)square).moveDown();
@@ -53,7 +55,9 @@ public class Player  {
                             ((Box)square).moveRight();
                             break;
                         case "LEFT":
-                            ((Box)square).moveLeft();
+                            if(((Box)square).moveLeft()){
+                                return -1;
+                            }
                             break;
                     }
                     return 0;
