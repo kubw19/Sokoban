@@ -38,7 +38,7 @@ public class Square{
         this.position.setX(x);
     }
     public void setY(int y){
-        this.position.setX(y);
+        this.position.setY(y);
     }
     public int getX(){
         return this.position.getX();
