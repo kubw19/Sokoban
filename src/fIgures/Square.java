@@ -11,11 +11,13 @@ public class Square{
     public Rectangle intersectionArea;
     private Graphics graphics;
     private Vector2d position;
+    private Game game;
     public String str = "asdasd";
-    public Square(int size, Graphics gr, Vector2d position){
+    public Square(int size, Graphics gr, Vector2d position,Game game){
         this.size = size;
         this.graphics = gr;
         this.position = position;
+        this.game=game;
     }
 
         public void draw(Graphics gr, Vector2d w){
@@ -45,5 +47,30 @@ public class Square{
     }
     public int getY(){
         return this.position.getY();
+    }
+    protected int collisionDetection(String dir){
+        Rectangle newPosition = null;
+        switch(dir) {
+            case "UP":
+                newPosition = new Rectangle(this.getX(), this.getY()-this.size, Game.getBrickSize(), Game.getBrickSize());
+                break;
+            case "DOWN":
+                newPosition = new Rectangle(this.getX(), this.getY()+this.size, Game.getBrickSize(), Game.getBrickSize());
+                break;
+            case "RIGHT":
+                newPosition = new Rectangle(this.getX()+this.size, this.getY(), Game.getBrickSize(), Game.getBrickSize());
+                break;
+            case "LEFT":
+                newPosition = new Rectangle(this.getX()-this.size, this.getY(), Game.getBrickSize(), Game.getBrickSize());
+                break;
+        }
+
+        for(Square square : game.getObecnyPoziom().objects){
+            if(square.intersectionArea.intersects(newPosition)){
+                if(square instanceof Brick||square instanceof Box)
+                    return -1;
+            }
+        }
+        return 0;
     }
 }

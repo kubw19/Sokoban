@@ -10,6 +10,5 @@ import fIgures.Square;
 public abstract class Poziom {
     public abstract void draw(Graphics gr);
     public abstract Vector2d getStartingPoint();
-
     public ArrayList<Square> objects;
 }
