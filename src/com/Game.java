@@ -38,7 +38,7 @@ public class Game extends JPanel implements KeyListener {
         setFocusable(true);
         setFocusTraversalKeysEnabled(false);
 
-        System.out.println(relativeX);
+        //System.out.println(relativeX);
         gridSize = 16 * scale;
         brickSize = 16 * scale;
 
@@ -124,4 +124,5 @@ public class Game extends JPanel implements KeyListener {
     public Poziom getObecnyPoziom() {
         return obecnyPoziom;
     }
+
 }

@@ -9,9 +9,9 @@ public class Square{
     protected int size;
     protected BufferedImage texture;
     public Rectangle intersectionArea;
-    private Graphics graphics;
-    private Vector2d position;
-    private Game game;
+    protected Graphics graphics;
+    protected Vector2d position;
+    protected Game game;
     public String str = "asdasd";
     public Square(int size, Graphics gr, Vector2d position,Game game){
         this.size = size;
@@ -32,7 +32,6 @@ public class Square{
         intersectionArea = new Rectangle(position.getX(), position.getY(), size, size);
         graphics.drawImage(texture, position.getX(),position.getY(), size, size,null);
     }
-
     public String toString(){
         return "(" + position.getX() + ", " + position.getY() + ")";
     }
@@ -69,6 +68,9 @@ public class Square{
             if(square.intersectionArea.intersects(newPosition)){
                 if(square instanceof Brick||square instanceof Box)
                     return -1;
+                if(square instanceof Target){
+                    return 1;
+                }
             }
         }
         return 0;

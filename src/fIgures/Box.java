@@ -21,11 +21,19 @@ public class Box extends Square{
             this.setY(this.getY() - this.size);
             return false;
         }
+        if(collisionDetection("UP") == 1) {
+            this.setY(this.getY() - this.size);
+            return false;
+        }
         return true;
     }
 
     public boolean moveDown(){
         if(collisionDetection("DOWN") == 0) {
+            this.setY(this.getY() + this.size);
+            return false;
+        }
+        if(collisionDetection("DOWN") == 1) {
             this.setY(this.getY() + this.size);
             return false;
         }
@@ -37,11 +45,19 @@ public class Box extends Square{
             this.setX(this.getX() + this.size);
             return false;
         }
+        if(collisionDetection("RIGHT") == 1) {
+            this.setX(this.getX() + this.size);
+            return false;
+        }
         return true;
     }
 
     public boolean moveLeft(){
         if(collisionDetection("LEFT") == 0) {
+            this.setX(this.getX() - this.size);
+            return false;
+        }
+        if(collisionDetection("LEFT") == 1) {
             this.setX(this.getX() - this.size);
             return false;
         }

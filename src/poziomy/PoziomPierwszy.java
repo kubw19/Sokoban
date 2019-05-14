@@ -15,12 +15,14 @@ public class PoziomPierwszy extends Poziom {
     private Vector2d startingPoint;
     private boolean built = false;
     private Game game;
+    private int currentPoints;
 
     public PoziomPierwszy(Game game){
 
         objects = new ArrayList<>();
         startingPoint = new Vector2d(0,-1);
         this.game = game;
+        currentPoints=0;
     }
 
     private void build(Game game, Graphics gr){
@@ -66,7 +68,11 @@ public class PoziomPierwszy extends Poziom {
         if(!built)this.build(game, gr);
 
         for(Square square : objects){
-            square.draw(gr);
+            if(square instanceof Target){
+                ((Target)square).draw(gr);
+            }else{
+                square.draw(gr);
+            }
         }
 
     }
