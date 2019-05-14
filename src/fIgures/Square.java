@@ -18,19 +18,20 @@ public class Square{
         this.graphics = gr;
         this.position = position;
         this.game=game;
+        this.intersectionArea = new Rectangle(position.getX(), position.getY(), size, size);
     }
 
         public void draw(Graphics gr, Vector2d w){
-        graphics = gr;
-        intersectionArea = new Rectangle(w.getX(), w.getY(), size, size);
+        this.graphics = gr;
+        this.intersectionArea = new Rectangle(w.getX(), w.getY(), size, size);
         this.position = w;
-        graphics.drawImage(texture, w.getX(),w.getY(), size, size,null);
+        this.graphics.drawImage(texture, w.getX(),w.getY(), size, size,null);
     }
 
     public void draw(Graphics gr){
-        graphics = gr;
-        intersectionArea = new Rectangle(position.getX(), position.getY(), size, size);
-        graphics.drawImage(texture, position.getX(),position.getY(), size, size,null);
+        this.graphics = gr;
+        this.intersectionArea = new Rectangle(position.getX(), position.getY(), size, size);
+        this.graphics.drawImage(texture, position.getX(),position.getY(), size, size,null);
     }
     public String toString(){
         return "(" + position.getX() + ", " + position.getY() + ")";
