@@ -18,7 +18,7 @@ public class Target extends Square {
         }
         catch(IOException e){}
     }
-    private int isOccupied(){
+    public int isOccupied(){
         Rectangle newPosition = new Rectangle(this.getX(), this.getY(), Game.getBrickSize(), Game.getBrickSize());
         for(Square square : game.getObecnyPoziom().objects) {
             if (square instanceof Box) {
@@ -35,7 +35,8 @@ public class Target extends Square {
         graphics = gr;
         intersectionArea = new Rectangle(position.getX(), position.getY(), size, size);
         graphics.drawImage(texture, position.getX(),position.getY(), size, size,null);
-        isOccupied();
-        System.out.println(occupied);
+    }
+    public boolean getOccupied(){
+        return occupied;
     }
 }

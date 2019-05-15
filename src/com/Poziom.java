@@ -8,6 +8,7 @@ import fIgures.Brick;
 import fIgures.Square;
 
 public abstract class Poziom {
+    public abstract int getWinCondition();
     public abstract void draw(Graphics gr);
     public abstract Vector2d getStartingPoint();
     public ArrayList<Square> objects;

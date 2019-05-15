@@ -3,6 +3,7 @@ package com;
 import fIgures.Brick;
 import fIgures.Square;
 import fIgures.Box;
+import fIgures.Target;
 
 import java.awt.*;
 
@@ -15,7 +16,7 @@ public class Player  {
     }
 
     public void draw(Graphics gr){
-        gr.setColor(Color.RED);
+        gr.setColor(Color.GREEN);
         Vector2d w = Game.getNormalizedPosition(game.getPlayersPosition().getX(),game.getPlayersPosition().getY());
         gr.fillRect(w.getX(),w.getY(),Game.getBrickSize(), Game.getBrickSize());
     }

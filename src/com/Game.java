@@ -1,6 +1,8 @@
 package com;
 
 import fIgures.Brick;
+import fIgures.Square;
+import fIgures.Target;
 import poziomy.PoziomPierwszy;
 
 import java.awt.*;
@@ -58,7 +60,17 @@ public class Game extends JPanel implements KeyListener {
 
         obecnyPoziom.draw(gr);
         player.draw(gr);
-
+        //
+        for(Square square : this.getObecnyPoziom().objects) {
+            if(square instanceof Target){
+                ((Target) square).isOccupied();
+            }
+        }
+        if (this.koniecGry()){
+            //tu pasuje wstawić wyświetlenie okienka "gratuluje" z klawiszami nastepny poziom powtórz i menu
+            System.out.println("koniec");
+        }
+        //
     }
 
 
@@ -78,8 +90,7 @@ public class Game extends JPanel implements KeyListener {
         };
         if(e.getKeyCode() == KeyEvent.VK_DOWN){
             player.moveDown();
-        };
-
+        }
 
         repaint();
     }
@@ -123,6 +134,20 @@ public class Game extends JPanel implements KeyListener {
 
     public Poziom getObecnyPoziom() {
         return obecnyPoziom;
+    }
+    public boolean koniecGry(){
+        int winPoints=0;
+        for(Square square : this.getObecnyPoziom().objects) {
+            if(square instanceof Target){
+                if(((Target) square).getOccupied()){
+                    winPoints++;
+                }
+            }
+        }
+        if(winPoints==this.obecnyPoziom.getWinCondition()){
+            return true;
+        }
+        return false;
     }
 
 }

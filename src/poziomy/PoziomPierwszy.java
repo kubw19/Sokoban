@@ -22,7 +22,6 @@ public class PoziomPierwszy extends Poziom {
         objects = new ArrayList<>();
         startingPoint = new Vector2d(0,-1);
         this.game = game;
-        currentPoints=0;
     }
 
     private void build(Game game, Graphics gr){
@@ -65,20 +64,21 @@ public class PoziomPierwszy extends Poziom {
     }
 
     public void draw(Graphics gr) {
-        if(!built)this.build(game, gr);
+        if (!built) this.build(game, gr);
 
-        for(Square square : objects){
-            if(square instanceof Target){
-                ((Target)square).draw(gr);
-            }else{
+        for (Square square : objects) {
+            if (square instanceof Target) {
+                ((Target) square).draw(gr);
+            } else {
                 square.draw(gr);
             }
         }
-
     }
-
     public Vector2d getStartingPoint(){
         return startingPoint;
+    }
+    public int getWinCondition(){
+        return 3;
     }
 
 }
