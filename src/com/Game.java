@@ -1,9 +1,7 @@
 package com;
 
-import fIgures.Brick;
 import fIgures.Square;
 import fIgures.Target;
-import poziomy.PoziomPierwszy;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
@@ -14,7 +12,6 @@ public class Game extends JPanel implements KeyListener {
 
     private Player player;
     private Poziom obecnyPoziom;
-    private PoziomPierwszy poziomPierwszy;
     public Vector2d playersPosition;
 
     private static int scale;
@@ -44,10 +41,9 @@ public class Game extends JPanel implements KeyListener {
         gridSize = 16 * scale;
         brickSize = 16 * scale;
 
-        player = new Player(this);
+        player = new Player(this,brickSize);
 
-        poziomPierwszy = new PoziomPierwszy(this);
-        obecnyPoziom = poziomPierwszy;
+        obecnyPoziom = new Poziom(this,'1');
         playersPosition = obecnyPoziom.getStartingPoint();
     }
 
@@ -55,7 +51,7 @@ public class Game extends JPanel implements KeyListener {
         relativeX = getWidth() / 2;
         relativeY = getHeight() / 2 + 24 * scale;
 
-        gr.setColor(new Color(122, 77, 46));
+        gr.setColor(new Color(10, 77, 46));
         gr.fillRect(0,0,getWidth(), getHeight());
 
         obecnyPoziom.draw(gr);
@@ -67,8 +63,11 @@ public class Game extends JPanel implements KeyListener {
             }
         }
         if (this.koniecGry()){
-            //tu pasuje wstawić wyświetlenie okienka "gratuluje" z klawiszami nastepny poziom powtórz i menu
+            obecnyPoziom=new Poziom(this,'1');
+            playersPosition = obecnyPoziom.getStartingPoint();
+            player=new Player(this,brickSize);
             System.out.println("koniec");
+            repaint();
         }
         //
     }

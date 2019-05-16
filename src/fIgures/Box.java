@@ -12,7 +12,7 @@ public class Box extends Square{
     public Box(Graphics gr, int size, Vector2d position,Game game){
         super(size, gr, position,game);
         try {
-            texture = ImageIO.read(new File("src/figures/resources/box.jpg"));
+            texture = ImageIO.read(new File("src/figures/resources/box.png"));
         }
         catch(IOException e){}
     }

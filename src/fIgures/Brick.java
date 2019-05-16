@@ -11,7 +11,7 @@ public class Brick extends Square {
     public Brick(Graphics gr, int size, Vector2d position,Game game){
         super(size, gr, position,game);
         try {
-            texture = ImageIO.read(new File("src/figures/resources/brick.jpg"));
+            texture = ImageIO.read(new File("src/figures/resources/brick.png"));
         }
         catch(IOException e){}
     }

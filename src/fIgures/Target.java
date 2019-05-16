@@ -13,7 +13,7 @@ public class Target extends Square {
     public Target(Graphics gr, int size, Vector2d position, Game game){
         super(size, gr, position,game);
         try {
-            texture = ImageIO.read(new File("src/figures/resources/target.jpg"));
+            texture = ImageIO.read(new File("src/figures/resources/target.png"));
             occupied=false;
         }
         catch(IOException e){}
