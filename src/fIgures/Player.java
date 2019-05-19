@@ -21,6 +21,8 @@ public class Player extends Square {
     }
 
     public void moveUp(){
+        textureSet.setActive("UP");
+        texture = textureSet.getActive();
         System.out.println("Up: "+collisionDetection("UP"));
         Square square;
         if(!((square = collisionDetection("UP")) instanceof Brick)){
@@ -30,11 +32,11 @@ public class Player extends Square {
             }
             position.moveUp();
         }
-        textureSet.setActive("UP");
-        texture = textureSet.getActive();
     }
 
     public void moveDown() {
+        textureSet.setActive("DOWN");
+        texture = textureSet.getActive();
         System.out.println("Down: "+collisionDetection("DOWN"));
         Square square;
         if(!((square = collisionDetection("DOWN")) instanceof Brick)){
@@ -44,10 +46,10 @@ public class Player extends Square {
             }
             position.moveDown();
         }
-        textureSet.setActive("DOWN");
-        texture = textureSet.getActive();
     }
     public void moveRight() {
+        textureSet.setActive("RIGHT");
+        texture = textureSet.getActive();
         System.out.println("Right: "+collisionDetection("RIGHT"));
         Square square;
         if(!((square = collisionDetection("RIGHT")) instanceof Brick)){
@@ -57,10 +59,10 @@ public class Player extends Square {
             }
             position.moveRight();
         }
-        textureSet.setActive("RIGHT");
-        texture = textureSet.getActive();
     }
     public void moveLeft(){
+        textureSet.setActive("LEFT");
+        texture = textureSet.getActive();
         System.out.println("Left: " + collisionDetection("LEFT"));
         Square square;
         if(!((square = collisionDetection("LEFT")) instanceof Brick)){
@@ -70,22 +72,5 @@ public class Player extends Square {
             }
             position.moveLeft();
         }
-        textureSet.setActive("LEFT");
-        texture = textureSet.getActive();
-        /*if(text=="left1"){
-            try {
-                texture = ImageIO.read(new File("src/figures/resources/left2.png"));
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            text="left2";
-        }else {
-            try {
-                texture = ImageIO.read(new File("src/figures/resources/left1.png"));
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            text = "left1";
-        }*/
     }
 }
