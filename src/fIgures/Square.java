@@ -67,8 +67,10 @@ public class Square{
 
         for(Square square : game.getObecnyPoziom().objects){
             if(square.intersectionArea.intersects(newPosition)){
-                if(square instanceof Brick||square instanceof Box)
+                if(square instanceof Brick)
                     return -1;
+                if(square instanceof Box)
+                    return 2;
                 if(square instanceof Target){
                     return 1;
                 }

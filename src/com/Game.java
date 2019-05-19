@@ -43,7 +43,7 @@ public class Game extends JPanel implements KeyListener {
 
         player = new Player(this,brickSize);
 
-        obecnyPoziom = new Poziom(this,'1');
+        obecnyPoziom = new Poziom(this,'2');
         playersPosition = obecnyPoziom.getStartingPoint();
     }
 
