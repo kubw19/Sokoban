@@ -19,11 +19,10 @@ public class Poziom {
     public ArrayList<Square> objects;
     private Game game;
     private Graphics gr;
+    private String id;
 
-    char id;
 
-
-    public Poziom(Game game, char id){
+    public Poziom(Game game, String id){
         this.id = id;
         objects = new ArrayList<>();
         this.game = game;
