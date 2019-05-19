@@ -1,4 +1,4 @@
-package com;
+package fIgures;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -31,7 +31,7 @@ public class TextureSet {
     }
 
     public void setActive(String dir) {
-        int collider = player.collisionDetection(dir);
+        Square collider = player.collisionDetection(dir);
         switch (dir) {
             case "UP":
                 setNewActive(1, collider);
@@ -48,9 +48,9 @@ public class TextureSet {
         }
     }
 
-    public void setNewActive(int i, int collider) {
+    public void setNewActive(int i, Square collider) {
         i=i*4;
-        if (collider == 0) {
+        if (collider==null) {
             if (activeImage == image[i]) {
                 activeImage = image[i + 1];
             } else {

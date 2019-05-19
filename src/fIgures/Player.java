@@ -10,12 +10,12 @@ import java.io.IOException;
 public class Player extends Square {
     private int moves = 0;
     protected String text;
+    private TextureSet textureSet;
     public Player(Game game, int size, Vector2d position){
         super(size, position, game);
-        try {
-            texture = ImageIO.read(new File("src/figures/resources/left1.png"));
-        }
-        catch(IOException e){}
+        this.textureSet=new TextureSet(this);
+        texture = textureSet.getActive();
+
 
         text="left1";
     }
@@ -30,21 +30,8 @@ public class Player extends Square {
             }
             position.moveUp();
         }
-            if(text=="up1"){
-                try {
-                    texture = ImageIO.read(new File("src/figures/resources/up2.png"));
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                text="up2";
-            }else{
-                try {
-                    texture=ImageIO.read(new File("src/figures/resources/up1.png"));
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                text="up1";
-            }
+        textureSet.setActive("UP");
+        texture = textureSet.getActive();
     }
 
     public void moveDown() {
@@ -57,21 +44,8 @@ public class Player extends Square {
             }
             position.moveDown();
         }
-        if (text == "down1") {
-            try {
-                texture = ImageIO.read(new File("src/figures/resources/down2.png"));
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            text = "down2";
-        } else {
-            try {
-                texture = ImageIO.read(new File("src/figures/resources/down1.png"));
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            text = "down1";
-        }
+        textureSet.setActive("DOWN");
+        texture = textureSet.getActive();
     }
     public void moveRight() {
         System.out.println("Right: "+collisionDetection("RIGHT"));
@@ -83,21 +57,8 @@ public class Player extends Square {
             }
             position.moveRight();
         }
-        if (text == "right1") {
-            try {
-                texture = ImageIO.read(new File("src/figures/resources/right2.png"));
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            text = "right2";
-        } else {
-            try {
-                texture = ImageIO.read(new File("src/figures/resources/right1.png"));
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            text = "right1";
-        }
+        textureSet.setActive("RIGHT");
+        texture = textureSet.getActive();
     }
     public void moveLeft(){
         System.out.println("Left: " + collisionDetection("LEFT"));
@@ -109,9 +70,9 @@ public class Player extends Square {
             }
             position.moveLeft();
         }
-
-
-        if(text=="left1"){
+        textureSet.setActive("LEFT");
+        texture = textureSet.getActive();
+        /*if(text=="left1"){
             try {
                 texture = ImageIO.read(new File("src/figures/resources/left2.png"));
             } catch (IOException e) {
@@ -125,6 +86,6 @@ public class Player extends Square {
                 e.printStackTrace();
             }
             text = "left1";
-        }
+        }*/
     }
 }
