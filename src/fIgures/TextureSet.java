@@ -11,9 +11,9 @@ public class TextureSet {
     private BufferedImage image[] = new BufferedImage[16];
 
     public TextureSet(Player player) {
-        String active[] = {"left1", "left2", "left1_push", "left2_push",
-                "up1", "up2", "up1_push", "up2_push",
+        String active[] = {"up1", "up2", "up1_push", "up2_push",
                 "down1", "down2", "down1_push", "down2_push",
+                "left1", "left2", "left1_push", "left2_push",
                 "right1", "right2", "right1_push", "right2_push"};
         for (int i = 0; i < 16; i++) {
             try {
@@ -34,13 +34,13 @@ public class TextureSet {
         Square collider = player.collisionDetection(dir);
         switch (dir) {
             case "UP":
-                setNewActive(1, collider);
+                setNewActive(0, collider);
                 break;
             case "DOWN":
-                setNewActive(2,collider);
+                setNewActive(1,collider);
                 break;
             case "LEFT":
-                setNewActive(0,collider);
+                setNewActive(2,collider);
                 break;
             case "RIGHT":
                 setNewActive(3,collider);

@@ -2,11 +2,6 @@ package fIgures;
 
 import com.Game;
 import com.Vector2d;
-
-import javax.imageio.ImageIO;
-import java.io.File;
-import java.io.IOException;
-
 public class Player extends Square {
     private int moves = 0;
     protected String text;

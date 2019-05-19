@@ -9,6 +9,8 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import javax.swing.*;
 
+import static java.lang.Thread.sleep;
+
 public class Game extends JPanel implements KeyListener {
 
     private Player player;
@@ -67,10 +69,13 @@ public class Game extends JPanel implements KeyListener {
                 ((Target) square).isOccupied();
             }
         }
+        repaint();
+            //tu powinno być opóźnienie żeby się pojawiał chociaż na chwilę ostatni układ poziomu
+        //nie może być w ifie niżej bo się potyka
         if (this.koniecGry()){
+            System.out.println("koniec");
             obecnyPoziom=new Poziom(this,'1');//zamiast liczby inkrementacja jakiejs zmiennej
             player=new Player(this,brickSize, obecnyPoziom.getStartingPoint());
-            System.out.println("koniec");
             repaint();
         }
         //
