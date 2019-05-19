@@ -9,19 +9,19 @@ import java.io.File;
 import java.io.IOException;
 
 public class Box extends Square{
-    public Box(Graphics gr, int size, Vector2d position,Game game){
-        super(size, gr, position,game);
+    public Box(int size, Vector2d position,Game game){
+        super(size, position,game);
         try {
             texture = ImageIO.read(new File("src/figures/resources/box.png"));
         }
         catch(IOException e){}
     }
     public boolean moveUp() {
-        if (collisionDetection("UP") == 0) {
+        if (collisionDetection("UP") == null) {
             this.setY(this.getY() - this.size);
             return false;
         }
-        if(collisionDetection("UP") == 1) {
+        else if(collisionDetection("UP") instanceof Target) {
             this.setY(this.getY() - this.size);
             return false;
         }
@@ -29,11 +29,11 @@ public class Box extends Square{
     }
 
     public boolean moveDown(){
-        if(collisionDetection("DOWN") == 0) {
+        if(collisionDetection("DOWN") == null) {
             this.setY(this.getY() + this.size);
             return false;
         }
-        if(collisionDetection("DOWN") == 1) {
+        else if(collisionDetection("DOWN") instanceof Target) {
             this.setY(this.getY() + this.size);
             return false;
         }
@@ -41,11 +41,11 @@ public class Box extends Square{
     }
 
     public boolean moveRight(){
-        if(collisionDetection("RIGHT") == 0) {
+        if(collisionDetection("RIGHT") == null) {
             this.setX(this.getX() + this.size);
             return false;
         }
-        if(collisionDetection("RIGHT") == 1) {
+        else if(collisionDetection("RIGHT") instanceof Target) {
             this.setX(this.getX() + this.size);
             return false;
         }
@@ -53,14 +53,18 @@ public class Box extends Square{
     }
 
     public boolean moveLeft(){
-        if(collisionDetection("LEFT") == 0) {
-            this.setX(this.getX() - this.size);
+        System.out.println("Typ" + collisionDetection("LEFT"));
+        if(collisionDetection("LEFT") instanceof Brick) {
+            System.out.println("CEGLA");
+            //this.setX(this.getX() - this.size);
             return false;
         }
-        if(collisionDetection("LEFT") == 1) {
-            this.setX(this.getX() - this.size);
-            return false;
+        else if(collisionDetection("LEFT") instanceof Target) {
+            System.out.println("TARGER");
+            position.moveLeft();
+            return true;
         }
+        position.moveLeft();
         return true;
     }
 }

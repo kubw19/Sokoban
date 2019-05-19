@@ -27,30 +27,30 @@ public class Poziom {
     public Poziom(Game game, char id){
         this.id = id;
         objects = new ArrayList<>();
-        startingPoint = new Vector2d(0,-1);
         this.game = game;
         winCondition=0;
+        this.build();
     }
 
-    private void build(Graphics gr){
+    private void build(){
         BufferedReader reader;
         try {
             reader = new BufferedReader(new FileReader(id + ".txt"));
             String line;
             line=reader.readLine();
             String[] parts = line.split(";");
-            startingPoint=new Vector2d(Integer.valueOf(parts[0]), Integer.valueOf(parts[1]));
-            while((line =reader.readLine()) != null){
+            startingPoint=Game.getNormalizedPosition(Integer.valueOf(parts[0]), Integer.valueOf(parts[1]));
+             while((line =reader.readLine()) != null){
                 parts = line.split(";");
                 switch(parts[0]){
                     case "0":
-                        objects.add(new Brick(gr, game.getBrickSize(), Game.getNormalizedPosition(Integer.valueOf(parts[1]), Integer.valueOf(parts[2])),game));
+                        objects.add(new Brick(game.getBrickSize(), Game.getNormalizedPosition(Integer.valueOf(parts[1]), Integer.valueOf(parts[2])),game));
                         break;
                     case "1":
-                        objects.add(new Box(gr, game.getBrickSize(), Game.getNormalizedPosition(Integer.valueOf(parts[1]), Integer.valueOf(parts[2])),game));
+                        objects.add(new Box(game.getBrickSize(), Game.getNormalizedPosition(Integer.valueOf(parts[1]), Integer.valueOf(parts[2])),game));
                         break;
                     case "2":
-                        objects.add(new Target(gr, game.getBrickSize(), Game.getNormalizedPosition(Integer.valueOf(parts[1]), Integer.valueOf(parts[2])),game));
+                        objects.add(new Target(game.getBrickSize(), Game.getNormalizedPosition(Integer.valueOf(parts[1]), Integer.valueOf(parts[2])),game));
                         winCondition++;
                         break;
                 }
@@ -61,15 +61,12 @@ public class Poziom {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        this.built = true;
     }
 
     public int getWinCondition(){
         return winCondition;
     }
     public void draw(Graphics gr) {
-        if (!built) this.build(gr);
-
         for (Square square : objects) {
             if (square instanceof Target) {
                 ((Target) square).draw(gr);

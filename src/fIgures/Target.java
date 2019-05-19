@@ -10,8 +10,8 @@ import java.io.IOException;
 
 public class Target extends Square {
     private boolean occupied;
-    public Target(Graphics gr, int size, Vector2d position, Game game){
-        super(size, gr, position,game);
+    public Target(int size, Vector2d position, Game game){
+        super(size, position,game);
         try {
             texture = ImageIO.read(new File("src/figures/resources/target.png"));
             occupied=false;

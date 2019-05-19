@@ -7,6 +7,22 @@ public class Vector2d {
         this.y = y;
     }
 
+    public void moveUp(){
+        y -= Game.getGridSize();
+    }
+
+    public void moveDown(){
+        y += Game.getGridSize();
+    }
+
+    public void moveLeft(){
+        x -= Game.getGridSize();
+    }
+
+    public void moveRight(){
+        x += Game.getGridSize();
+    }
+
     public int getX() {
         return x;
     }
@@ -21,5 +37,9 @@ public class Vector2d {
 
     public void setY(int y) {
         this.y = y;
+    }
+
+    public String toString(){
+        return "(" + x + ", " + y +")";
     }
 }

@@ -12,7 +12,6 @@ public class Game extends JPanel implements KeyListener {
 
     private Player player;
     private Poziom obecnyPoziom;
-    public Vector2d playersPosition;
 
     private static int scale;
     private static int relativeX;
@@ -41,18 +40,23 @@ public class Game extends JPanel implements KeyListener {
         gridSize = 16 * scale;
         brickSize = 16 * scale;
 
-        player = new Player(this,brickSize);
+        relativeX = 300 * scale / 2;
+        relativeY = 300 /16 * 9 * scale/ 2 + 24 * scale;
 
         obecnyPoziom = new Poziom(this,'1');
-        playersPosition = obecnyPoziom.getStartingPoint();
+        player = new Player(this,brickSize, obecnyPoziom.getStartingPoint());
     }
 
     public void paint(Graphics gr){
         relativeX = getWidth() / 2;
         relativeY = getHeight() / 2 + 24 * scale;
+        System.out.println(getWidth());
 
         gr.setColor(new Color(10, 77, 46));
         gr.fillRect(0,0,getWidth(), getHeight());
+
+        gr.setColor(new Color(66, 22, 46));
+        gr.fillRect(Game.getNormalizedPosition(0,0).getX(),Game.getNormalizedPosition(0,0).getY(),20, 20);
 
         obecnyPoziom.draw(gr);
         player.draw(gr);
@@ -64,8 +68,8 @@ public class Game extends JPanel implements KeyListener {
         }
         if (this.koniecGry()){
             obecnyPoziom=new Poziom(this,'1');
-            playersPosition = obecnyPoziom.getStartingPoint();
-            player=new Player(this,brickSize);
+            //player.po = obecnyPoziom.getStartingPoint();
+            player=new Player(this,brickSize, obecnyPoziom.getStartingPoint());
             System.out.println("koniec");
             repaint();
         }
@@ -117,19 +121,7 @@ public class Game extends JPanel implements KeyListener {
         return brickSize;
     }
 
-    public Vector2d getPlayersPosition() {
-        return playersPosition;
-    }
 
-    public Vector2d getPlayersPositionNormalized() {
-        Vector2d w = getNormalizedPosition(playersPosition.getX(), playersPosition.getY());
-        return w;
-    }
-
-    public Vector2d getPlayersPositionNormalized(int offsetX, int offsetY) {
-        Vector2d w = getNormalizedPosition(playersPosition.getX() + offsetX, playersPosition.getY() + offsetY);
-        return w;
-    }
 
     public Poziom getObecnyPoziom() {
         return obecnyPoziom;
