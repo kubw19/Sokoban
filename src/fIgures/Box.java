@@ -17,7 +17,7 @@ public class Box extends Square{
     }
     public boolean moveUp() {
         System.out.println("Typ" + collisionDetection("UP"));
-        if(collisionDetection("UP") instanceof Brick) {
+        if(collisionDetection("UP") instanceof Brick ||collisionDetection("UP") instanceof Box) {
             System.out.println("CEGLA");
             return false;
         }
@@ -32,7 +32,7 @@ public class Box extends Square{
 
     public boolean moveDown(){
         System.out.println("Typ" + collisionDetection("DOWN"));
-        if(collisionDetection("DOWN") instanceof Brick) {
+        if(collisionDetection("DOWN") instanceof Brick||collisionDetection("DOWN") instanceof Box) {
             System.out.println("CEGLA");
             return false;
         }
@@ -47,7 +47,7 @@ public class Box extends Square{
 
     public boolean moveRight(){
         System.out.println("Typ" + collisionDetection("RIGHT"));
-        if(collisionDetection("RIGHT") instanceof Brick) {
+        if(collisionDetection("RIGHT") instanceof Brick||collisionDetection("RIGHT") instanceof Box) {
             System.out.println("CEGLA");
             return false;
         }
@@ -62,7 +62,7 @@ public class Box extends Square{
 
     public boolean moveLeft(){
         System.out.println("Typ" + collisionDetection("LEFT"));
-        if(collisionDetection("LEFT") instanceof Brick) {
+        if(collisionDetection("LEFT") instanceof Brick||collisionDetection("LEFT") instanceof Box) {
             System.out.println("CEGLA");
             //this.setX(this.getX() - this.size);
             return false;

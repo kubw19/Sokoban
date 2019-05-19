@@ -46,7 +46,7 @@ public class Game extends JPanel implements KeyListener {
         relativeX = 300 * scale / 2;
         relativeY = 300 /16 * 9 * scale/ 2 + 24 * scale;
 
-        obecnyPoziom = new Poziom(this,'2');//docelowo trzeba tu wsadzić zmienną zamiast liczby jako id
+        obecnyPoziom = new Poziom(this,'1');//docelowo trzeba tu wsadzić zmienną zamiast liczby jako id
         player = new Player(this,brickSize, obecnyPoziom.getStartingPoint());
     }
 

@@ -64,12 +64,12 @@ public class Square{
                 newPosition = new Rectangle(this.getX()-this.size, this.getY(), Game.getBrickSize(), Game.getBrickSize());
                 break;
         }
-
+        Square temp=null;
         for(Square square : game.getObecnyPoziom().objects){
             if(square.intersectionArea.intersects(newPosition)){
-                return square;
+                temp=square;
             }
         }
-        return null;
+        return temp;
      }
 }
