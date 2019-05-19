@@ -17,7 +17,6 @@ public class Poziom {
     private int winCondition;
     private Vector2d startingPoint;
     public ArrayList<Square> objects;
-    private boolean built = false;
     private Game game;
     private Graphics gr;
 
@@ -43,13 +42,13 @@ public class Poziom {
              while((line =reader.readLine()) != null){
                 parts = line.split(";");
                 switch(parts[0]){
-                    case "0":
+                    case "W":
                         objects.add(new Brick(game.getBrickSize(), Game.getNormalizedPosition(Integer.valueOf(parts[1]), Integer.valueOf(parts[2])),game));
                         break;
-                    case "1":
+                    case "B":
                         objects.add(new Box(game.getBrickSize(), Game.getNormalizedPosition(Integer.valueOf(parts[1]), Integer.valueOf(parts[2])),game));
                         break;
-                    case "2":
+                    case "T":
                         objects.add(new Target(game.getBrickSize(), Game.getNormalizedPosition(Integer.valueOf(parts[1]), Integer.valueOf(parts[2])),game));
                         winCondition++;
                         break;

@@ -4,7 +4,6 @@ import com.Game;
 import com.Vector2d;
 
 import javax.imageio.ImageIO;
-import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 
@@ -17,38 +16,47 @@ public class Box extends Square{
         catch(IOException e){}
     }
     public boolean moveUp() {
-        if (collisionDetection("UP") == null) {
-            this.setY(this.getY() - this.size);
+        System.out.println("Typ" + collisionDetection("UP"));
+        if(collisionDetection("UP") instanceof Brick) {
+            System.out.println("CEGLA");
             return false;
         }
         else if(collisionDetection("UP") instanceof Target) {
-            this.setY(this.getY() - this.size);
-            return false;
+            System.out.println("TARGET");
+            position.moveUp();
+            return true;
         }
+        position.moveUp();
         return true;
     }
 
     public boolean moveDown(){
-        if(collisionDetection("DOWN") == null) {
-            this.setY(this.getY() + this.size);
+        System.out.println("Typ" + collisionDetection("DOWN"));
+        if(collisionDetection("DOWN") instanceof Brick) {
+            System.out.println("CEGLA");
             return false;
         }
         else if(collisionDetection("DOWN") instanceof Target) {
-            this.setY(this.getY() + this.size);
-            return false;
+            System.out.println("TARGET");
+            position.moveDown();
+            return true;
         }
+        position.moveDown();
         return true;
     }
 
     public boolean moveRight(){
-        if(collisionDetection("RIGHT") == null) {
-            this.setX(this.getX() + this.size);
+        System.out.println("Typ" + collisionDetection("RIGHT"));
+        if(collisionDetection("RIGHT") instanceof Brick) {
+            System.out.println("CEGLA");
             return false;
         }
         else if(collisionDetection("RIGHT") instanceof Target) {
-            this.setX(this.getX() + this.size);
-            return false;
+            System.out.println("TARGER");
+            position.moveRight();
+            return true;
         }
+        position.moveRight();
         return true;
     }
 

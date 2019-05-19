@@ -3,7 +3,6 @@ package fIgures;
 import com.Vector2d;
 import com.Game;
 import javax.imageio.ImageIO;
-import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 

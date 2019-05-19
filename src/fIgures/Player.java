@@ -1,20 +1,16 @@
-package com;
+package fIgures;
 
-import fIgures.Brick;
-import fIgures.Square;
-import fIgures.Box;
-import fIgures.Target;
+import com.Game;
+import com.Vector2d;
 
 import javax.imageio.ImageIO;
-import java.awt.*;
-import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
 public class Player extends Square {
     private int moves = 0;
     protected String text;
-    Player(Game game,int size, Vector2d position){
+    public Player(Game game, int size, Vector2d position){
         super(size, position, game);
         try {
             texture = ImageIO.read(new File("src/figures/resources/left1.png"));
@@ -25,8 +21,15 @@ public class Player extends Square {
     }
 
     public void moveUp(){
-        if(collisionDetection("UP") == null) {
+        System.out.println("Up: "+collisionDetection("UP"));
+        Square square;
+        if(!((square = collisionDetection("UP")) instanceof Brick)){
+            if(square instanceof Box){
+                System.out.println("mamy box");
+                if((!((Box) square).moveUp()))return;
+            }
             position.moveUp();
+        }
             if(text=="up1"){
                 try {
                     texture = ImageIO.read(new File("src/figures/resources/up2.png"));
@@ -42,12 +45,18 @@ public class Player extends Square {
                 }
                 text="up1";
             }
-        }
     }
 
     public void moveDown() {
-        if (collisionDetection("DOWN") == null)
+        System.out.println("Down: "+collisionDetection("DOWN"));
+        Square square;
+        if(!((square = collisionDetection("DOWN")) instanceof Brick)){
+            if(square instanceof Box){
+                System.out.println("mamy box");
+                if((!((Box) square).moveDown()))return;
+            }
             position.moveDown();
+        }
         if (text == "down1") {
             try {
                 texture = ImageIO.read(new File("src/figures/resources/down2.png"));
@@ -65,9 +74,15 @@ public class Player extends Square {
         }
     }
     public void moveRight() {
-        System.out.println(collisionDetection("RIGHT"));
-        if (collisionDetection("RIGHT") == null)
+        System.out.println("Right: "+collisionDetection("RIGHT"));
+        Square square;
+        if(!((square = collisionDetection("RIGHT")) instanceof Brick)){
+            if(square instanceof Box){
+                System.out.println("mamy box");
+                if((!((Box) square).moveRight()))return;
+            }
             position.moveRight();
+        }
         if (text == "right1") {
             try {
                 texture = ImageIO.read(new File("src/figures/resources/right2.png"));
@@ -94,7 +109,6 @@ public class Player extends Square {
             }
             position.moveLeft();
         }
-
 
 
         if(text=="left1"){

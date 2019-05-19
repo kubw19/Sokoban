@@ -1,5 +1,6 @@
 package com;
 
+import fIgures.Player;
 import fIgures.Square;
 import fIgures.Target;
 
@@ -43,20 +44,20 @@ public class Game extends JPanel implements KeyListener {
         relativeX = 300 * scale / 2;
         relativeY = 300 /16 * 9 * scale/ 2 + 24 * scale;
 
-        obecnyPoziom = new Poziom(this,'1');
+        obecnyPoziom = new Poziom(this,'2');//docelowo trzeba tu wsadzić zmienną zamiast liczby jako id
         player = new Player(this,brickSize, obecnyPoziom.getStartingPoint());
     }
 
     public void paint(Graphics gr){
         relativeX = getWidth() / 2;
         relativeY = getHeight() / 2 + 24 * scale;
-        System.out.println(getWidth());
+        //System.out.println(getWidth());
 
         gr.setColor(new Color(10, 77, 46));
         gr.fillRect(0,0,getWidth(), getHeight());
 
-        gr.setColor(new Color(66, 22, 46));
-        gr.fillRect(Game.getNormalizedPosition(0,0).getX(),Game.getNormalizedPosition(0,0).getY(),20, 20);
+        //gr.setColor(new Color(66, 22, 46));
+        //gr.fillRect(Game.getNormalizedPosition(0,0).getX(),Game.getNormalizedPosition(0,0).getY(),20, 20);
 
         obecnyPoziom.draw(gr);
         player.draw(gr);
@@ -67,8 +68,7 @@ public class Game extends JPanel implements KeyListener {
             }
         }
         if (this.koniecGry()){
-            obecnyPoziom=new Poziom(this,'1');
-            //player.po = obecnyPoziom.getStartingPoint();
+            obecnyPoziom=new Poziom(this,'1');//zamiast liczby inkrementacja jakiejs zmiennej
             player=new Player(this,brickSize, obecnyPoziom.getStartingPoint());
             System.out.println("koniec");
             repaint();
