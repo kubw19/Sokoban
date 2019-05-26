@@ -1,6 +1,6 @@
 package com;
 
-import fIgures.Button;
+import com.Button;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -50,7 +50,11 @@ public class Menu implements MouseListener {
 
     @Override
     public void mouseEntered(MouseEvent e) {
-        System.out.println("Wjechałem");
+        System.out.println("teasd");
+        if(startLevelButton.intersectionArea.contains(e.getPoint())) {
+            startLevelButton.textureHover();
+            g.repaint();
+        }
     }
 
     @Override

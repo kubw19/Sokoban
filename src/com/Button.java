@@ -1,4 +1,4 @@
-package fIgures;
+package com;
 import com.Game;
 import com.Vector2d;
 
@@ -12,11 +12,12 @@ public class Button{
     protected int height;
     protected int width;
 
-    protected BufferedImage texture;
+    protected BufferedImage texture, textureMain, textureHover;
     public Rectangle intersectionArea;
     protected Graphics graphics;
     protected Vector2d position;
     protected Game game;
+
 
     public Button(int height, int width, Vector2d position,Game game, String text){
         this.height = height;
@@ -28,12 +29,22 @@ public class Button{
         switch(text){
             case "Gra":
                 try {
-                texture= ImageIO.read(new File("src/com/button" + text + ".png"));
+                textureMain = ImageIO.read(new File("src/com/button" + text + ".png"));
+                textureHover = ImageIO.read(new File("src/com/buttonHovered" + text + ".png"));
+                texture = textureMain;
                 }
                 catch(IOException e){}
 
                 break;
         }
+    }
+
+    public void textureMain(){
+         texture = textureMain;
+    }
+
+    public void textureHover(){
+        texture = textureHover;
     }
 
     public void draw(Graphics gr){
