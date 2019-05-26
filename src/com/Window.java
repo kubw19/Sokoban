@@ -29,6 +29,5 @@ public class Window {
 
         Game g = new Game(scale);
         Window window = new Window(g);
-
     }
 }
