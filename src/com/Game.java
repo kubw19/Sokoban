@@ -25,6 +25,7 @@ public class Game extends JPanel implements KeyListener{
     private static int brickSize;
     private Menu menu;
 
+    private static Integer id=1;
 
 
     public static Vector2d getNormalizedPosition(int x, int y){
@@ -66,7 +67,7 @@ public class Game extends JPanel implements KeyListener{
     }
 
     public void startLevel(){
-        obecnyPoziom = new Poziom(this,'1');//docelowo trzeba tu wsadzić zmienną zamiast liczby jako id
+        obecnyPoziom = new Poziom(this,id.toString());//docelowo trzeba tu wsadzić zmienną zamiast liczby jako id
         player = new Player(this,brickSize, obecnyPoziom.getStartingPoint());
         repaint();
     }
@@ -97,17 +98,16 @@ public class Game extends JPanel implements KeyListener{
                 }
             }
 
-            repaint();
-            //tu powinno być opóźnienie żeby się pojawiał chociaż na chwilę ostatni układ poziomu
+                //tu powinno być opóźnienie żeby się pojawiał chociaż na chwilę ostatni układ poziomu
             //nie może być w ifie niżej bo się potyka
-            if (this.koniecGry()) {
+            if (this.koniecGry()){
                 System.out.println("koniec");
-                obecnyPoziom = new Poziom(this, '1');//zamiast liczby inkrementacja jakiejs zmiennej
-                player = new Player(this, brickSize, obecnyPoziom.getStartingPoint());
+                obecnyPoziom=new Poziom(this,(++id).toString());
+                player=new Player(this,brickSize, obecnyPoziom.getStartingPoint());
                 repaint();
             }
-            //
         }
+        repaint();
     }
 
 
@@ -172,6 +172,7 @@ public class Game extends JPanel implements KeyListener{
         if(winPoints==this.obecnyPoziom.getWinCondition()){
             return true;
         }
+        
         return false;
     }
 
