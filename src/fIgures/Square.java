@@ -12,21 +12,18 @@ public class Square{
     protected Graphics graphics;
     protected Vector2d position;
     protected Game game;
-    public String str = "asdasd";
     public Square(int size, Vector2d position,Game game){
         this.size = size;
         this.position = position;
         this.game=game;
         this.intersectionArea = new Rectangle(position.getX(), position.getY(), size, size);
     }
-
     public void draw(Graphics gr, Vector2d w){
         this.graphics = gr;
         this.intersectionArea = new Rectangle(w.getX(), w.getY(), size, size);
         this.position = w;
         this.graphics.drawImage(texture, w.getX(),w.getY(), size, size,null);
     }
-
     public void draw(Graphics gr){
         this.graphics = gr;
         this.intersectionArea = new Rectangle(position.getX(), position.getY(), size, size);
@@ -47,7 +44,6 @@ public class Square{
     public int getY(){
         return this.position.getY();
     }
-
     public Square collisionDetection(String dir){
         Rectangle newPosition = null;
         switch(dir) {
@@ -65,7 +61,7 @@ public class Square{
                 break;
         }
         Square temp=null;
-        for(Square square : game.getObecnyPoziom().objects){
+        for(Square square : game.getObecnyPoziom().getObjects()){
             if(square.intersectionArea.intersects(newPosition)){
                 temp=square;
             }

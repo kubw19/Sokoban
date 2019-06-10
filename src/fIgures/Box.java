@@ -4,16 +4,31 @@ import com.Game;
 import com.Vector2d;
 
 import javax.imageio.ImageIO;
+import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
 public class Box extends Square{
+    private BufferedImage onTarget;
     public Box(int size, Vector2d position,Game game){
         super(size, position,game);
         try {
             texture = ImageIO.read(new File("src/figures/resources/box.png"));
+            onTarget = ImageIO.read(new File("src/figures/resources/onTarget.png"));
         }
         catch(IOException e){}
+    }
+    public void draw(Graphics gr){
+
+        this.graphics = gr;
+        this.intersectionArea = new Rectangle(position.getX(), position.getY(), size, size);
+        if(this.isOnTarget()){
+            this.graphics.drawImage(onTarget, position.getX(),position.getY(), size, size,null);
+        }else{
+            this.graphics.drawImage(texture, position.getX(),position.getY(), size, size,null);
+        }
+
     }
     public boolean moveUp() {
         System.out.println("Typ" + collisionDetection("UP"));
@@ -74,5 +89,16 @@ public class Box extends Square{
         }
         position.moveLeft();
         return true;
+    }
+    private boolean isOnTarget(){
+        Rectangle newPosition = new Rectangle(this.getX(), this.getY(), Game.getBrickSize(), Game.getBrickSize());
+        for(Square square : game.getObecnyPoziom().getObjects()) {
+            if (square instanceof Target) {
+                if (square.intersectionArea.intersects(newPosition)) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 }

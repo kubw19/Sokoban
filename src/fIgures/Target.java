@@ -10,6 +10,7 @@ import java.io.IOException;
 
 public class Target extends Square {
     private boolean occupied;
+
     public Target(int size, Vector2d position, Game game){
         super(size, position,game);
         try {
@@ -20,7 +21,7 @@ public class Target extends Square {
     }
     public int isOccupied(){
         Rectangle newPosition = new Rectangle(this.getX(), this.getY(), Game.getBrickSize(), Game.getBrickSize());
-        for(Square square : game.getObecnyPoziom().objects) {
+        for(Square square : game.getObecnyPoziom().getObjects()) {
             if (square instanceof Box) {
                 if (square.intersectionArea.intersects(newPosition)) {
                     occupied = true;

@@ -6,8 +6,6 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-
-import com.Vector2d;
 import fIgures.Brick;
 import fIgures.Box;
 import fIgures.Target;
@@ -16,11 +14,9 @@ import fIgures.Square;
 public class Poziom {
     private int winCondition;
     private Vector2d startingPoint;
-    public ArrayList<Square> objects;
+    private ArrayList<Square> objects;
     private Game game;
-    private Graphics gr;
     private String id;
-
 
     public Poziom(Game game, String id){
         this.id = id;
@@ -29,7 +25,6 @@ public class Poziom {
         winCondition=0;
         this.build();
     }
-
     private void build(){
         BufferedReader reader;
         try {
@@ -60,20 +55,16 @@ public class Poziom {
             e.printStackTrace();
         }
     }
-
     public int getWinCondition(){
         return winCondition;
     }
     public void draw(Graphics gr) {
         for (Square square : objects) {
-            if (square instanceof Target) {
-                ((Target) square).draw(gr);
-            } else {
                 square.draw(gr);
-            }
         }
     }
     public Vector2d getStartingPoint(){
         return startingPoint;
     }
+    public ArrayList<Square> getObjects(){return objects;}
 }

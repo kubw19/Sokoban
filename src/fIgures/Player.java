@@ -4,8 +4,9 @@ import com.Game;
 import com.Vector2d;
 public class Player extends Square {
     private int moves = 0;
-    protected String text;
+    private String text;
     private TextureSet textureSet;
+
     public Player(Game game, int size, Vector2d position){
         super(size, position, game);
         this.textureSet=new TextureSet(this);
@@ -14,7 +15,6 @@ public class Player extends Square {
 
         text="left1";
     }
-
     public void moveUp(){
         textureSet.setActive("UP");
         texture = textureSet.getActive();
@@ -26,9 +26,9 @@ public class Player extends Square {
                 if((!((Box) square).moveUp()))return;
             }
             position.moveUp();
+            moves++;
         }
     }
-
     public void moveDown() {
         textureSet.setActive("DOWN");
         texture = textureSet.getActive();
@@ -40,6 +40,7 @@ public class Player extends Square {
                 if((!((Box) square).moveDown()))return;
             }
             position.moveDown();
+            moves++;
         }
     }
     public void moveRight() {
@@ -53,6 +54,7 @@ public class Player extends Square {
                 if((!((Box) square).moveRight()))return;
             }
             position.moveRight();
+            moves++;
         }
     }
     public void moveLeft(){
@@ -66,6 +68,7 @@ public class Player extends Square {
                 if((!((Box) square).moveLeft()))return;
             }
             position.moveLeft();
+            moves++;
         }
     }
 }

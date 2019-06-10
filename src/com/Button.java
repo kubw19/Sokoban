@@ -1,6 +1,4 @@
 package com;
-import com.Game;
-import com.Vector2d;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -9,14 +7,13 @@ import java.io.File;
 import java.io.IOException;
 
 public class Button{
-    protected int height;
-    protected int width;
-
-    protected BufferedImage texture, textureMain, textureHover;
+    private int height;
+    private int width;
+    private BufferedImage texture, textureMain, textureHover;
     public Rectangle intersectionArea;
-    protected Graphics graphics;
-    protected Vector2d position;
-    protected Game game;
+    private Graphics graphics;
+    private Vector2d position;
+    private Game game;
 
 
     public Button(int height, int width, Vector2d position,Game game, String text){
@@ -38,15 +35,8 @@ public class Button{
                 break;
         }
     }
-
-    public void textureMain(){
-         texture = textureMain;
-    }
-
-    public void textureHover(){
-        texture = textureHover;
-    }
-
+    public void textureSetMain(){ texture = textureMain; }//zbędne??
+    public void textureSetHover(){ texture = textureHover; }
     public void draw(Graphics gr){
         this.graphics = gr;
         this.intersectionArea = new Rectangle(position.getX(), position.getY(), width, height);
@@ -55,19 +45,9 @@ public class Button{
     public String toString(){
         return "(" + position.getX() + ", " + position.getY() + ")";
     }
-    public void setX(int x){
-        this.position.setX(x);
-    }
-    public void setY(int y){
-        this.position.setY(y);
-    }
-    public int getX(){
-        return this.position.getX();
-    }
-    public int getY(){
-        return this.position.getY();
-    }
-
-
-
+    //to poniżej chyba zupełnie niepotrzebne
+    public void setX(int x){ this.position.setX(x); }
+    public void setY(int y){ this.position.setY(y); }
+    public int getX(){ return this.position.getX(); }
+    public int getY(){ return this.position.getY(); }
 }

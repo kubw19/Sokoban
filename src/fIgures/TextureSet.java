@@ -25,11 +25,9 @@ public class TextureSet {
         activeImage = image[0];
         this.player = player;
     }
-
     public BufferedImage getActive() {
         return activeImage;
     }
-
     public void setActive(String dir) {
         Square collider = player.collisionDetection(dir);
         switch (dir) {
@@ -47,7 +45,6 @@ public class TextureSet {
                 break;
         }
     }
-
     public void setNewActive(int i, Square collider) {
         i=i*4;
         if (collider==null) {
