@@ -69,8 +69,9 @@ public class Game extends JPanel implements KeyListener{
                 }
             }
             if (this.koniecGry()){
+                this.player.resetMoves();
                 repaint();
-                menu.draw(gr);//zamiast tego pasuje wstawic menu po skonczeniu poziomu i jakoś opóźnić wyświetlanie żeby było widać kolejny poziom
+                menu.draw(gr);//zamiast tego pasuje wstawic menu po skonczeniu poziomu i jakoś opóźnić wyświetlanie żeby było widać skończony poziom
             }
         }
         repaint();

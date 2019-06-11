@@ -7,6 +7,7 @@ import java.io.File;
 import java.io.IOException;
 
 public class Brick extends Square {
+
     public Brick(int size, Vector2d position,Game game){
         super(size, position,game);
         try {
@@ -14,7 +15,6 @@ public class Brick extends Square {
         }
         catch(IOException e){}
     }
-
     public int getSize(){
         return size;
     }

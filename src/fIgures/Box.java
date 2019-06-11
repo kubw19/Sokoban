@@ -10,7 +10,9 @@ import java.io.File;
 import java.io.IOException;
 
 public class Box extends Square{
+
     private BufferedImage onTarget;
+
     public Box(int size, Vector2d position,Game game){
         super(size, position,game);
         try {
@@ -44,7 +46,6 @@ public class Box extends Square{
         position.moveUp();
         return true;
     }
-
     public boolean moveDown(){
         System.out.println("Typ" + collisionDetection("DOWN"));
         if(collisionDetection("DOWN") instanceof Brick||collisionDetection("DOWN") instanceof Box) {
@@ -59,7 +60,6 @@ public class Box extends Square{
         position.moveDown();
         return true;
     }
-
     public boolean moveRight(){
         System.out.println("Typ" + collisionDetection("RIGHT"));
         if(collisionDetection("RIGHT") instanceof Brick||collisionDetection("RIGHT") instanceof Box) {
@@ -74,7 +74,6 @@ public class Box extends Square{
         position.moveRight();
         return true;
     }
-
     public boolean moveLeft(){
         System.out.println("Typ" + collisionDetection("LEFT"));
         if(collisionDetection("LEFT") instanceof Brick||collisionDetection("LEFT") instanceof Box) {
