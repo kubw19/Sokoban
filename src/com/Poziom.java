@@ -1,10 +1,7 @@
 package com;
 
 import java.awt.*;
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import fIgures.Brick;
 import fIgures.Box;
@@ -24,6 +21,11 @@ public class Poziom {
         this.game = game;
         winCondition=0;
         this.build();
+    }
+    public Poziom(Game game){
+        this.game=game;
+        winCondition=0;
+        objects = new ArrayList<>();
     }
     private void build(){
         BufferedReader reader;
@@ -67,4 +69,59 @@ public class Poziom {
         return startingPoint;
     }
     public ArrayList<Square> getObjects(){return objects;}
+    public void addElement(Square square){
+        objects.add(square);
+    }
+    public void removeElement(Vector2d position){
+        Square removed=null;
+        for(Square square:objects){
+            if(square.getX()==position.getX()&&square.getY()==position.getY())removed=square;
+        }
+        if(removed!=null)
+        objects.remove(removed);
+    }
+    public void setStartingPoint(Vector2d position){
+        startingPoint=position;
+    }
+    public void saveLevel(){
+        BufferedReader reader;
+        for(int i=1;i>-1;i++) {
+            try {
+                reader = new BufferedReader(new FileReader(i + ".txt"));
+                try {
+                    reader.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            } catch (FileNotFoundException e) {
+                try {
+                    File file=new File("..//"+i+".txt");
+                    file.createNewFile();
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
+                BufferedWriter writer = null;
+                try {
+                    writer = new BufferedWriter(new FileWriter(i + ".txt"));
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
+                try { writer.write(startingPoint.toString()); } catch (IOException e1) { }
+                for(Square square:objects){
+                    try {
+                        writer.newLine();
+                        writer.write("txt");//tutaj warunki zapisu odpowiedniej linii
+                    }catch (IOException e1) {
+                        e1.printStackTrace();
+                    }
+                    try {
+                        writer.close();
+                    } catch (IOException e1) {
+                        e1.printStackTrace();
+                    }
+                    return;
+                }
+            }
+        }
+    }
 }
