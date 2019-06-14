@@ -20,6 +20,16 @@ public class Game extends JPanel implements KeyListener{
     private static int gridSize;
     private static int brickSize;
     private static Integer id=0;
+    private Window window;
+    private Button b;
+
+    public void setWindow(Window window) {
+        this.window = window;
+    }
+
+    public Window getWindow(){
+        return window;
+    }
 
     public static Vector2d getNormalizedPosition(int x, int y){
         Vector2d w = new Vector2d(x,y);
@@ -38,14 +48,17 @@ public class Game extends JPanel implements KeyListener{
         addKeyListener(this);
         setFocusable(true);
         setFocusTraversalKeysEnabled(false);
-        menu = new Menu(this);
-        addMouseListener(menu);
+
+        //addMouseListener(menu);
         gridSize = 16 * scale;
         brickSize = 16 * scale;
         relativeX = 300 * scale / 2;
         relativeY = 300 /16 * 9 * scale/ 2 + 24 * scale;
         obecnyPoziom = null;
         player = null;
+        menu = new Menu(this);
+        b = new Button(50,250, Game.getNormalizedPosition(-7,0, 250, 50), this, "NastepnyPoziom");
+
     }
     public void startLevel(){
         obecnyPoziom=new Poziom(this,(++id).toString());
@@ -71,7 +84,8 @@ public class Game extends JPanel implements KeyListener{
             if (this.koniecGry()){
                 this.player.resetMoves();
                 repaint();
-                menu.draw(gr);//zamiast tego pasuje wstawic menu po skonczeniu poziomu i jakoś opóźnić wyświetlanie żeby było widać skończony poziom
+               // menu.draw(gr);//zamiast tego pasuje wstawic menu po skonczeniu poziomu i jakoś opóźnić wyświetlanie żeby było widać skończony poziom
+                b.draw(gr);
             }
         }
         repaint();

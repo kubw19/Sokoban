@@ -22,5 +22,6 @@ public class Window {
     public static void main(String[] args){
         Game g = new Game(scale);
         Window window = new Window(g);
+        g.setWindow(window);
     }
 }
