@@ -74,6 +74,9 @@ public class Button implements MouseListener{
                 game.getObecnyPoziom().saveLevel();
                 game.returnToMenu();
             }
+            else if(text == "LeaveCreator"){
+                game.returnToMenu();
+            }
         }
     }
 
