@@ -3,6 +3,7 @@ package com;
 import fIgures.Player;
 import fIgures.Square;
 import fIgures.Target;
+import fIgures.Box;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
@@ -64,6 +65,11 @@ public class Game extends JPanel implements KeyListener{
     public void startLevel(){
         obecnyPoziom=new Poziom(this,(++id).toString());
         player = new Player(this,brickSize, obecnyPoziom.getStartingPoint());
+        //obecnyPoziom=new Poziom(this);
+        // Box box;
+        //box = new Box(brickSize,new Vector2d(20,20),this);
+        //obecnyPoziom.addElement(box);
+        //obecnyPoziom.saveLevel();
         repaint();
     }
 
