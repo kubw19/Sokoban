@@ -19,6 +19,7 @@ public class Player extends Square {
         if(!((square = collisionDetection("UP")) instanceof Brick)){
             if(square instanceof Box){
                 System.out.println("mamy box");
+                if(!game.isCreatingLevel())
                 if((!((Box) square).moveUp()))return;
             }
             position.moveUp();
@@ -38,7 +39,9 @@ public class Player extends Square {
         if(!((square = collisionDetection("DOWN")) instanceof Brick)){
             if(square instanceof Box){
                 System.out.println("mamy box");
-                if((!((Box) square).moveDown()))return;
+                if(!game.isCreatingLevel()) {
+                    if ((!((Box) square).moveDown())) return;
+                }
             }
             position.moveDown();
             moves++;
@@ -56,6 +59,7 @@ public class Player extends Square {
         if(!((square = collisionDetection("RIGHT")) instanceof Brick)){
             if(square instanceof Box){
                 System.out.println("mamy box");
+                if(!game.isCreatingLevel())
                 if((!((Box) square).moveRight()))return;
             }
             position.moveRight();
@@ -75,6 +79,7 @@ public class Player extends Square {
         if(!((square = collisionDetection("LEFT")) instanceof Brick)){
             if(square instanceof Box){
                 System.out.println("mamy box");
+                if(!game.isCreatingLevel())
                 if((!((Box) square).moveLeft()))return;
             }
             position.moveLeft();

@@ -78,7 +78,6 @@ public class Box extends Square{
         System.out.println("Typ" + collisionDetection("LEFT"));
         if(collisionDetection("LEFT") instanceof Brick||collisionDetection("LEFT") instanceof Box) {
             System.out.println("CEGLA");
-            //this.setX(this.getX() - this.size);
             return false;
         }
         else if(collisionDetection("LEFT") instanceof Target) {

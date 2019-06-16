@@ -13,7 +13,7 @@ public class Poziom {
     private Game game;
     private String id;
 
-    public Poziom(Game game, String id){
+    public Poziom(Game game, String id)throws IOException{
         this.id = id;
         objects = new ArrayList<>();
         this.game = game;
@@ -26,9 +26,8 @@ public class Poziom {
         objects = new ArrayList<>();
         startingPoint=Game.getNormalizedPosition(0,0);
     }
-    private void build(){
+    private void build() throws IOException{
         BufferedReader reader;
-        try {
             reader = new BufferedReader(new FileReader(id + ".txt"));
             String line;
             line=reader.readLine();
@@ -49,12 +48,6 @@ public class Poziom {
                         break;
                 }
             }
-
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
     public int getWinCondition(){
         return winCondition;
@@ -98,10 +91,26 @@ public class Poziom {
                 try { writer.write(startingPoint.getX()+";"+startingPoint.getY()); } catch (IOException e1) { }
                 for(Square square:objects){
                     try {
-                        if(!(square instanceof StartingPoint))writer.newLine();
-                        if(square instanceof Box)writer.write("B;"+square.getX()+";"+square.getY());
-                        if(square instanceof Brick)writer.write("W;"+square.getX()+";"+square.getY());
-                        if(square instanceof Target)writer.write("T;"+square.getX()+";"+square.getY());
+                        if(square instanceof Target){
+                            writer.newLine();
+                            writer.write("T;"+square.getX()+";"+square.getY());
+                        }
+                    }catch (IOException e1) { }
+                }
+                for(Square square:objects){
+                    try {
+                        if(square instanceof Brick){
+                            writer.newLine();
+                            writer.write("W;"+square.getX()+";"+square.getY());
+                        }
+                    }catch (IOException e1) { }
+                }
+                for(Square square:objects){
+                    try {
+                        if(square instanceof Box){
+                            writer.newLine();
+                            writer.write("B;"+square.getX()+";"+square.getY());
+                        }
                     }catch (IOException e1) { }
                 }
                 try { writer.close(); } catch (IOException e1) { }

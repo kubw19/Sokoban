@@ -6,6 +6,10 @@ import fIgures.Box;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import javax.swing.*;
 
 public class Game extends JPanel implements KeyListener{
@@ -76,13 +80,10 @@ public class Game extends JPanel implements KeyListener{
 
     }
     public void startLevel(){
-        obecnyPoziom=new Poziom(this,(++id).toString());
+        try {
+            obecnyPoziom=new Poziom(this,(++id).toString());
+        }catch (FileNotFoundException e) { this.returnToMenu(); } catch (IOException e) { }
         player = new Player(this,brickSize, obecnyPoziom.getStartingPoint());
-        //obecnyPoziom=new Poziom(this);
-        // Box box;
-        //box = new Box(brickSize,new Vector2d(20,20),this);
-        //obecnyPoziom.addElement(box);
-        //obecnyPoziom.saveLevel();
         repaint();
     }
     public void paint(Graphics gr){
