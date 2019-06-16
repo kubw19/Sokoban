@@ -1,8 +1,6 @@
 package com;
 
-import fIgures.Player;
-import fIgures.Square;
-import fIgures.Target;
+import fIgures.*;
 import fIgures.Box;
 
 import java.awt.*;
@@ -20,6 +18,11 @@ public class Game extends JPanel implements KeyListener{
     private static int relativeY;
     private static int gridSize;
     private static int brickSize;
+
+    public void setCreatingLevel(boolean creatingLevel) {
+        this.creatingLevel = creatingLevel;
+    }
+
     private boolean creatingLevel;
     private static Integer id=0;
     private Window window;
@@ -73,16 +76,13 @@ public class Game extends JPanel implements KeyListener{
         repaint();
     }
 
-    public void startCreator(){
-        creatingLevel = true;
-        repaint();
-    }
+
 
     public void paint(Graphics gr){
         relativeX = getWidth() / 2;
         relativeY = getHeight() / 2 + 24 * scale;
         if(creatingLevel == true){
-            System.out.println("sadasd");
+            Creator.displayCreator(gr, this);
         }
         else if(obecnyPoziom == null || player == null){
             menu.draw(gr);
@@ -106,6 +106,8 @@ public class Game extends JPanel implements KeyListener{
         }
         repaint();
     }
+
+
     @Override
     public void keyTyped(KeyEvent e) { }
     @Override
@@ -135,6 +137,9 @@ public class Game extends JPanel implements KeyListener{
     public static int getGridSize() {return gridSize;}
     public static int getBrickSize() { return brickSize; }
     public Poziom getObecnyPoziom() { return obecnyPoziom; }
+    public void setObecnyPoziom(Poziom obecnyPoziom) { this.obecnyPoziom = obecnyPoziom;}
+    public void setPlayer(Player player){this.player = player;}
+    public Player getPlayer() { return player; }
     private boolean koniecGry(){
         int winPoints=0;
         for(Square square : this.getObecnyPoziom().getObjects()) {
@@ -149,6 +154,8 @@ public class Game extends JPanel implements KeyListener{
         }
         return false;
     }
+
+
 
 
 

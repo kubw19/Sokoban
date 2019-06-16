@@ -69,7 +69,7 @@ public class Button implements MouseListener{
     public void mouseReleased(MouseEvent e) {
         if(intersectionArea.contains(e.getPoint())) {
             if(text == "NastepnyPoziom" || text == "Gra")game.startLevel();
-            else if(text == "Kreator")game.startCreator();
+            else if(text == "Kreator")Creator.startCreator(game);
         }
     }
 

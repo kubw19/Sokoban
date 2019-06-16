@@ -26,6 +26,7 @@ public class Poziom {
         this.game=game;
         winCondition=0;
         objects = new ArrayList<>();
+        startingPoint=Game.getNormalizedPosition(0,0);
     }
     private void build(){
         BufferedReader reader;
