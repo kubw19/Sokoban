@@ -3,10 +3,8 @@ package com;
 import java.awt.*;
 import java.io.*;
 import java.util.ArrayList;
-import fIgures.Brick;
-import fIgures.Box;
-import fIgures.Target;
-import fIgures.Square;
+
+import fIgures.*;
 
 public class Poziom {
     private int winCondition;
@@ -35,18 +33,18 @@ public class Poziom {
             String line;
             line=reader.readLine();
             String[] parts = line.split(";");
-            startingPoint=Game.getNormalizedPosition(Integer.valueOf(parts[0]), Integer.valueOf(parts[1]));
+            startingPoint=new Vector2d(Integer.valueOf(parts[0]), Integer.valueOf(parts[1]));
              while((line =reader.readLine()) != null){
                 parts = line.split(";");
                 switch(parts[0]){
                     case "W":
-                        objects.add(new Brick(game.getBrickSize(), Game.getNormalizedPosition(Integer.valueOf(parts[1]), Integer.valueOf(parts[2])),game));
+                        objects.add(new Brick(game.getBrickSize(), new Vector2d(Integer.valueOf(parts[1]), Integer.valueOf(parts[2])),game));
                         break;
                     case "B":
-                        objects.add(new Box(game.getBrickSize(), Game.getNormalizedPosition(Integer.valueOf(parts[1]), Integer.valueOf(parts[2])),game));
+                        objects.add(new Box(game.getBrickSize(), new Vector2d(Integer.valueOf(parts[1]), Integer.valueOf(parts[2])),game));
                         break;
                     case "T":
-                        objects.add(new Target(game.getBrickSize(), Game.getNormalizedPosition(Integer.valueOf(parts[1]), Integer.valueOf(parts[2])),game));
+                        objects.add(new Target(game.getBrickSize(), new Vector2d(Integer.valueOf(parts[1]), Integer.valueOf(parts[2])),game));
                         winCondition++;
                         break;
                 }
@@ -100,14 +98,14 @@ public class Poziom {
                 try { writer.write(startingPoint.getX()+";"+startingPoint.getY()); } catch (IOException e1) { }
                 for(Square square:objects){
                     try {
-                        writer.newLine();
+                        if(!(square instanceof StartingPoint))writer.newLine();
                         if(square instanceof Box)writer.write("B;"+square.getX()+";"+square.getY());
                         if(square instanceof Brick)writer.write("W;"+square.getX()+";"+square.getY());
                         if(square instanceof Target)writer.write("T;"+square.getX()+";"+square.getY());
                     }catch (IOException e1) { }
-                    try { writer.close(); } catch (IOException e1) { }
-                    return;
                 }
+                try { writer.close(); } catch (IOException e1) { }
+                return;
             }
         }
     }
