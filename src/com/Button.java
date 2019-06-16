@@ -16,6 +16,7 @@ public class Button implements MouseListener{
     private Graphics graphics;
     private Vector2d position;
     private Game game;
+    private String text;
 
 
     public Button(int height, int width, Vector2d position,Game game, String text){
@@ -24,6 +25,7 @@ public class Button implements MouseListener{
         this.width = width;
         this.position = position;
         this.game=game;
+        this.text = text;
         this.intersectionArea = new Rectangle(position.getX(), position.getY(), width, height);
 
 
@@ -66,7 +68,8 @@ public class Button implements MouseListener{
     @Override
     public void mouseReleased(MouseEvent e) {
         if(intersectionArea.contains(e.getPoint())) {
-            game.startLevel();
+            if(text == "NastepnyPoziom" || text == "Gra")game.startLevel();
+            else if(text == "Kreator")game.startCreator();
         }
     }
 

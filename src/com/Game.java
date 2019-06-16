@@ -19,9 +19,10 @@ public class Game extends JPanel implements KeyListener{
     private static int relativeY;
     private static int gridSize;
     private static int brickSize;
+    private boolean creatingLevel;
     private static Integer id=0;
     private Window window;
-    private Button b;
+    private Button nextLevelButton;
 
     public void setWindow(Window window) {
         this.window = window;
@@ -57,7 +58,7 @@ public class Game extends JPanel implements KeyListener{
         obecnyPoziom = null;
         player = null;
         menu = new Menu(this);
-        b = new Button(50,250, Game.getNormalizedPosition(-7,0, 250, 50), this, "NastepnyPoziom");
+        nextLevelButton = new Button(50,250, Game.getNormalizedPosition(-7,0, 250, 50), this, "NastepnyPoziom");
 
     }
     public void startLevel(){
@@ -65,10 +66,19 @@ public class Game extends JPanel implements KeyListener{
         player = new Player(this,brickSize, obecnyPoziom.getStartingPoint());
         repaint();
     }
+
+    public void startCreator(){
+        creatingLevel = true;
+        repaint();
+    }
+
     public void paint(Graphics gr){
         relativeX = getWidth() / 2;
         relativeY = getHeight() / 2 + 24 * scale;
-        if(obecnyPoziom == null || player == null){
+        if(creatingLevel == true){
+            System.out.println("sadasd");
+        }
+        else if(obecnyPoziom == null || player == null){
             menu.draw(gr);
         }
         else {
@@ -85,7 +95,7 @@ public class Game extends JPanel implements KeyListener{
                 this.player.resetMoves();
                 repaint();
                // menu.draw(gr);//zamiast tego pasuje wstawic menu po skonczeniu poziomu i jakoś opóźnić wyświetlanie żeby było widać skończony poziom
-                b.draw(gr);
+                nextLevelButton.draw(gr);
             }
         }
         repaint();
