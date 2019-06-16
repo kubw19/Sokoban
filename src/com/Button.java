@@ -71,7 +71,7 @@ public class Button implements MouseListener{
             if(text == "NastepnyPoziom" || text == "Gra")game.startLevel();
             else if(text == "Kreator")Creator.startCreator(game);
             else if(text == "ZapiszPoziom"){
-                //game.getObecnyPoziom().saveLevel();
+                game.getObecnyPoziom().saveLevel();
                 game.returnToMenu();
             }
         }

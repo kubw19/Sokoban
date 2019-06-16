@@ -86,40 +86,26 @@ public class Poziom {
     }
     public void saveLevel(){
         BufferedReader reader;
-        for(int i=1;i>-1;i++) {
+        for(int i=1;i<100;i++) {
             try {
                 reader = new BufferedReader(new FileReader(i + ".txt"));
-                try {
-                    reader.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                try {reader.close(); } catch (IOException e1){}
             } catch (FileNotFoundException e) {
                 try {
-                    File file=new File("..//"+i+".txt");
+                    File file=new File(i+".txt");
                     file.createNewFile();
-                } catch (IOException e1) {
-                    e1.printStackTrace();
-                }
+                } catch (IOException e1) { }
                 BufferedWriter writer = null;
-                try {
-                    writer = new BufferedWriter(new FileWriter(i + ".txt"));
-                } catch (IOException e1) {
-                    e1.printStackTrace();
-                }
-                try { writer.write(startingPoint.toString()); } catch (IOException e1) { }
+                try { writer = new BufferedWriter(new FileWriter(i + ".txt")); } catch (IOException e1) { }
+                try { writer.write(startingPoint.getX()+";"+startingPoint.getY()); } catch (IOException e1) { }
                 for(Square square:objects){
                     try {
                         writer.newLine();
-                        writer.write("txt");//tutaj warunki zapisu odpowiedniej linii
-                    }catch (IOException e1) {
-                        e1.printStackTrace();
-                    }
-                    try {
-                        writer.close();
-                    } catch (IOException e1) {
-                        e1.printStackTrace();
-                    }
+                        if(square instanceof Box)writer.write("B;"+square.getX()+";"+square.getY());
+                        if(square instanceof Brick)writer.write("W;"+square.getX()+";"+square.getY());
+                        if(square instanceof Target)writer.write("T;"+square.getX()+";"+square.getY());
+                    }catch (IOException e1) { }
+                    try { writer.close(); } catch (IOException e1) { }
                     return;
                 }
             }

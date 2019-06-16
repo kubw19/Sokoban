@@ -85,9 +85,6 @@ public class Game extends JPanel implements KeyListener{
         //obecnyPoziom.saveLevel();
         repaint();
     }
-
-
-
     public void paint(Graphics gr){
         relativeX = getWidth() / 2;
         relativeY = getHeight() / 2 + 24 * scale;
@@ -116,8 +113,6 @@ public class Game extends JPanel implements KeyListener{
         }
         repaint();
     }
-
-
     @Override
     public void keyTyped(KeyEvent e) { }
     @Override
