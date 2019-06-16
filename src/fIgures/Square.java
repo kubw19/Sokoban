@@ -68,4 +68,8 @@ public class Square{
         }
         return temp;
      }
+
+     public Vector2d getPosition(){
+        return position;
+     }
 }

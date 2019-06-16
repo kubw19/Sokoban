@@ -70,6 +70,10 @@ public class Button implements MouseListener{
         if(intersectionArea.contains(e.getPoint())) {
             if(text == "NastepnyPoziom" || text == "Gra")game.startLevel();
             else if(text == "Kreator")Creator.startCreator(game);
+            else if(text == "ZapiszPoziom"){
+                //game.getObecnyPoziom().saveLevel();
+                game.returnToMenu();
+            }
         }
     }
 

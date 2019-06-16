@@ -25,6 +25,10 @@ public class Player extends Square {
             moves++;
             System.out.println("moves: "+moves);
         }
+        else if(game.isCreatingLevel()){
+            position.moveUp();
+            moves++;
+        }
     }
     public void moveDown() {
         textureSet.setActive("DOWN");
@@ -39,6 +43,9 @@ public class Player extends Square {
             position.moveDown();
             moves++;
             System.out.println("moves: "+moves);
+        }
+        else if(game.isCreatingLevel()){
+            position.moveDown();
         }
     }
     public void moveRight() {
@@ -55,6 +62,10 @@ public class Player extends Square {
             moves++;
             System.out.println("moves: "+moves);
         }
+
+        else if(game.isCreatingLevel()){
+            position.moveRight();
+        }
     }
     public void moveLeft(){
         textureSet.setActive("LEFT");
@@ -69,6 +80,9 @@ public class Player extends Square {
             position.moveLeft();
             moves++;
             System.out.println("moves: "+moves);
+        }
+        else if(game.isCreatingLevel()){
+            position.moveLeft();
         }
     }
     public void resetMoves(){this.moves=0;}

@@ -19,8 +19,18 @@ public class Game extends JPanel implements KeyListener{
     private static int gridSize;
     private static int brickSize;
 
+    public void returnToMenu(){
+        obecnyPoziom = null;
+        creatingLevel = false;
+        player = null;
+    }
+
     public void setCreatingLevel(boolean creatingLevel) {
         this.creatingLevel = creatingLevel;
+    }
+
+    public boolean isCreatingLevel() {
+        return creatingLevel;
     }
 
     private boolean creatingLevel;
@@ -112,6 +122,14 @@ public class Game extends JPanel implements KeyListener{
     public void keyTyped(KeyEvent e) { }
     @Override
     public void keyPressed(KeyEvent e) {
+        if(e.getKeyCode() == KeyEvent.VK_ENTER && creatingLevel){
+            Creator.newElement(this);
+        }
+
+        if(e.getKeyCode() == KeyEvent.VK_DELETE && creatingLevel){
+            Creator.deleteElement(this);
+        }
+
         if(e.getKeyCode() == KeyEvent.VK_RIGHT){
             player.moveRight();
         };
