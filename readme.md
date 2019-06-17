@@ -10,3 +10,6 @@ Format of saved level is:
 * T;x;y - position of target (there may be more of those)
 * W;x;y - position of Wall/Brick (there may be more of those)
 * B;x;y - position of Box (there must be exactly as many of those as Targets)
+
+## JavaDocs
+https://kubw19.github.io/graNaJTP/
