@@ -51,15 +51,19 @@ public class Creator {
             if(square.getPosition().equals(position.getPosition())){
                 selectMaterial = true;
                 material = square;
-                System.out.println("wybrane");
             }
         }
         if(!selectMaterial){
 
             for(Square sq : game.getCurrentLevel().getObjects()){
-                if(game.getPlayer().getPosition().equals(sq.getPosition()))return;
+                if(game.getPlayer().getPosition().equals(sq.getPosition())){
+                    if(sq instanceof Brick)return;
+                    if(material instanceof Brick)return;
+                    if(sq instanceof Box&&(material instanceof Box||material instanceof StartingPoint))return;
+                    if(sq instanceof Target&&material instanceof Target)return;
+                    if(sq instanceof StartingPoint&&(material instanceof Box||material instanceof StartingPoint))return;
+                }
             }
-
             if(material instanceof Brick){
                 game.getCurrentLevel().addElement(new Brick(Game.getBrickSize(), new Vector2d(game.getPlayer().getPosition()), game));
             }
