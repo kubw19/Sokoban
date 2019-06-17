@@ -11,7 +11,7 @@ import java.io.IOException;
 public class Button implements MouseListener{
     private int height;
     private int width;
-    private BufferedImage texture, textureMain, textureHover;
+    private BufferedImage texture, textureMain;
     public Rectangle intersectionArea;
     private Graphics graphics;
     private Vector2d position;
@@ -31,7 +31,6 @@ public class Button implements MouseListener{
 
                 try {
                 textureMain = ImageIO.read(new File("src/com/button" + text + ".png"));
-                //textureHover = ImageIO.read(new File("src/com/buttonHovered" + text + ".png"));
                 texture = textureMain;
                 }
                 catch(IOException e){}
@@ -40,7 +39,6 @@ public class Button implements MouseListener{
 
     }
     public void textureSetMain(){ texture = textureMain; }//zbędne??
-    public void textureSetHover(){ texture = textureHover; }
     public void draw(Graphics gr){
         this.graphics = gr;
         this.intersectionArea = new Rectangle(position.getX(), position.getY(), width, height);
@@ -71,6 +69,7 @@ public class Button implements MouseListener{
             if(text == "NastepnyPoziom" || text == "Gra")game.startLevel();
             else if(text == "Kreator")Creator.startCreator(game);
             else if(text == "ZapiszPoziom"){
+                //if(game.getObecnyPoziom().getStartingPoint() == null)return;
                 game.getObecnyPoziom().saveLevel();
                 game.returnToMenu();
             }

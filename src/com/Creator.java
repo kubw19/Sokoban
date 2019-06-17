@@ -37,6 +37,7 @@ public class Creator {
 
         game.getObecnyPoziom().draw(gr);
         game.getPlayer().draw(gr);
+        //game.getObecnyPoziom().setStartingPoint(null);
 
         saveLevelButton.draw(gr);
         exitButton.draw(gr);
@@ -56,6 +57,11 @@ public class Creator {
             }
         }
         if(!selectMaterial){
+
+            for(Square sq : game.getObecnyPoziom().getObjects()){
+                if(game.getPlayer().getPosition().equals(sq.getPosition()))return;
+            }
+
             if(material instanceof Brick){
                 game.getObecnyPoziom().addElement(new Brick(Game.getBrickSize(), new Vector2d(game.getPlayer().getPosition()), game));
             }
@@ -73,7 +79,8 @@ public class Creator {
                     }
                 }
                 game.getObecnyPoziom().addElement(new StartingPoint(Game.getBrickSize(), new Vector2d(game.getPlayer().getPosition()), game));
-                game.getObecnyPoziom().setStartingPoint(game.getPlayer().getPosition());
+                game.getObecnyPoziom().setStartingPoint(new Vector2d(game.getPlayer().getPosition()));
+                //System.out.println("ustawiam " +game.getObecnyPoziom().getStartingPoint());
             }
 
         }

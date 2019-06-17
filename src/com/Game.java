@@ -27,6 +27,7 @@ public class Game extends JPanel implements KeyListener{
         obecnyPoziom = null;
         creatingLevel = false;
         player = null;
+        id = 0;
     }
 
     public void setCreatingLevel(boolean creatingLevel) {
@@ -83,7 +84,10 @@ public class Game extends JPanel implements KeyListener{
         try {
             obecnyPoziom=new Poziom(this,(++id).toString());
         }catch (FileNotFoundException e) { this.returnToMenu(); } catch (IOException e) { }
-        player = new Player(this,brickSize, obecnyPoziom.getStartingPoint());
+
+        if(obecnyPoziom != null)
+            player = new Player(this,brickSize, obecnyPoziom.getStartingPoint());
+
         repaint();
     }
     public void paint(Graphics gr){
