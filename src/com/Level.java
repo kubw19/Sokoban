@@ -48,7 +48,7 @@ public class Level {
      */
     private void build() throws IOException{
         BufferedReader reader;
-            reader = new BufferedReader(new FileReader(id + ".txt"));
+            reader = new BufferedReader(new FileReader("./levels/"+id + ".txt"));
             String line;
             line=reader.readLine();
             String[] parts = line.split(";");
@@ -138,15 +138,15 @@ public class Level {
         BufferedReader reader;
         for(int i=1;i<100;i++) {
             try {
-                reader = new BufferedReader(new FileReader(i + ".txt"));
+                reader = new BufferedReader(new FileReader("./levels/"+i + ".txt"));
                 try {reader.close(); } catch (IOException e1){}
             } catch (FileNotFoundException e) {
                 try {
-                    File file=new File(i+".txt");
+                    File file=new File("./levels/"+i+".txt");
                     file.createNewFile();
                 } catch (IOException e1) { }
                 BufferedWriter writer = null;
-                try { writer = new BufferedWriter(new FileWriter(i + ".txt")); } catch (IOException e1) { }
+                try { writer = new BufferedWriter(new FileWriter("./levels/"+i + ".txt")); } catch (IOException e1) { }
                 try { writer.write(startingPoint.getX()+";"+startingPoint.getY()); } catch (IOException e1) { }
                 for(Square square:objects){
                     try {
