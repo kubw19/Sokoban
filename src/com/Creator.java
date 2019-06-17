@@ -5,6 +5,10 @@ import fIgures.*;
 import java.awt.*;
 import java.util.ArrayList;
 
+
+/**
+ * Klasa statyczna zawierająca metody obsługjące wyświetlanie kreatora nowych poziomów
+ */
 public class Creator {
 
     private static ArrayList<Square> objectsToSelect = new ArrayList<>();
@@ -14,6 +18,10 @@ public class Creator {
     private static Button saveLevelButton;
     private static Button exitButton;
 
+    /**
+     * Inicjalizacja wyświetlenia kreatora
+     * @param game obiekt Game, w którym będzie wyświetlony kreator nowego poziomu
+     */
     public static void startCreator(Game game){//zainicjowanie tworzenia poziomów
         game.setCreatingLevel(true);
         game.setCurrentLevel(new Level(game));
@@ -28,6 +36,11 @@ public class Creator {
 
     }
 
+    /**
+     * Funkcja rysująca kreator na ekranie
+     * @param gr obiekt Graphics, na którym rysowany będzie kreator
+     * @param game obiekt Game gry, dla któej rysowany będzie kreator
+     */
     public static void displayCreator(Graphics gr, Game game){//rysowanie kreatora
         gr.setColor(new Color(10, 77, 46));
         gr.fillRect(0, 0, game.getWidth(), game.getHeight());
@@ -43,6 +56,10 @@ public class Creator {
 
     }
 
+    /**
+     * Funkcja dodająca nowy element do tworzonego poziomu
+     * @param game obiekt Game, w którym jest tworzony poziom
+     */
     public static void newElement(Game game){
 
         Square position = game.getPlayer();
@@ -88,6 +105,11 @@ public class Creator {
 
 
     }
+
+    /**
+     * Funkcja kasująca element z tworzonego poziomu
+     * @param game obiekt Game, w którym jest tworzony poziom
+     */
     public static void deleteElement(Game game){
         Square position = game.getPlayer();
         game.getCurrentLevel().removeElement(position.getPosition());

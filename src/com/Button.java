@@ -12,17 +12,27 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
+/**
+ * Klasa opisująca przycisk
+ */
 public class Button implements MouseListener{
     private int height;
     private int width;
     private BufferedImage texture, textureMain;
-    public Rectangle intersectionArea;
+    private Rectangle intersectionArea;
     private Graphics graphics;
     private Vector2d position;
     private Game game;
     private String text;
 
-
+    /**
+     * Konstruktor obiektu instancji Button
+     * @param height Wysokość obiektu
+     * @param width Szerokość obiektu
+     * @param position Pozycja obiektu
+     * @param game Obiekt Game, w którym obiekt będzie rysowany
+     * @param text Identyfikator grafiki dla tworzonego przycisku
+     */
     public Button(int height, int width, Vector2d position,Game game, String text){
         game.addMouseListener(this);
         this.height = height;
@@ -42,30 +52,22 @@ public class Button implements MouseListener{
 
 
     }
-    public void textureSetMain(){ texture = textureMain; }//zbędne??
+
+    /**
+     * Funkcja rysująca przycisk na instancji Graphics
+     * @param gr Panel, na którym rysowany będzie przycisk
+     */
     public void draw(Graphics gr){
         this.graphics = gr;
         this.intersectionArea = new Rectangle(position.getX(), position.getY(), width, height);
         this.graphics.drawImage(texture, position.getX(),position.getY(), width, height,null);
     }
-    public String toString(){
-        return "(" + position.getX() + ", " + position.getY() + ")";
-    }
-    //to poniżej chyba zupełnie niepotrzebne
-    public void setX(int x){ this.position.setX(x); }
-    public void setY(int y){ this.position.setY(y); }
-    public int getX(){ return this.position.getX(); }
-    public int getY(){ return this.position.getY(); }
 
     @Override
-    public void mouseClicked(MouseEvent e) {
-
-    }
+    public void mouseClicked(MouseEvent e) { }
 
     @Override
-    public void mousePressed(MouseEvent e) {
-
-    }
+    public void mousePressed(MouseEvent e) { }
 
     @Override
     public void mouseReleased(MouseEvent e) {
