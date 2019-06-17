@@ -7,6 +7,9 @@ import javax.imageio.ImageIO;
 import java.io.File;
 import java.io.IOException;
 
+/**
+ * Klasa opisująca obiekty opisujące początkowe pozycje gracza ustawiane w trakcie tworzenia poziomu
+ */
 public class StartingPoint extends Square {
     /**
      * konstruktor klasy StartingPoint tworzy obiekt typu StartingPoint

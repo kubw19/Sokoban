@@ -6,7 +6,9 @@ import javax.imageio.ImageIO;
 import java.io.File;
 import java.io.IOException;
 
-
+/**
+ * Klasa opisująca obiekt typu Brick. Jest to "cegła" wyznaczająca granice jednego poziomu
+ */
 public class Brick extends Square {
     /**
      * Konstruktor klasy Brick tworzy obiekt ściany

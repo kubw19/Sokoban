@@ -5,6 +5,9 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
+/**
+ * Klasa opisująca obiekt, który przechowuje tabelę z texturami przypisanymi do gracza Player.
+ */
 public class TextureSet {
     private Player player;
     private BufferedImage activeImage;

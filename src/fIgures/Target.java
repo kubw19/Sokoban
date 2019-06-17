@@ -8,6 +8,9 @@ import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 
+/**
+ * Klasa opisująca obiekt typu  Box. Jest to miejsce, w którym gracz musi umieścić skrzynkę
+ */
 public class Target extends Square {
     private boolean occupied;
 

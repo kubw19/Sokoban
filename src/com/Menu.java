@@ -6,7 +6,9 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
-
+/**
+ * Klasa singleton opisująca menu główne gry
+ */
 public class Menu{
     private Button startLevelButton;
     private Button levelCreatorButton;

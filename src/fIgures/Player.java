@@ -2,6 +2,10 @@ package fIgures;
 
 import com.Game;
 import com.Vector2d;
+
+/**
+ * Klasa opisująca instancje gracza
+ */
 public class Player extends Square {
     private int moves = 0;
     private TextureSet textureSet;

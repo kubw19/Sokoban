@@ -6,6 +6,9 @@ import java.util.ArrayList;
 
 import fIgures.*;
 
+/**
+ * Klasa opisująca poziom gry
+ */
 public class Level {
     private int winCondition;
     private Vector2d startingPoint;

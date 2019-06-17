@@ -9,6 +9,9 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
+/**
+ * Klasa opisująca obiekt typu Box. Jest to skrzynka, którą przesuwa gracz podczas rozgrywki
+ */
 public class Box extends Square{
 
     private BufferedImage onTarget;

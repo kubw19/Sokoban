@@ -1,7 +1,8 @@
 package com;
 
-import java.awt.*;
-
+/**
+ * Klasa opisująca obiekt, który reprezentuje położenie punktu na ekranie
+ */
 public class Vector2d {
     private int x, y;
 

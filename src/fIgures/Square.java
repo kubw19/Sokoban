@@ -5,6 +5,9 @@ import com.Vector2d;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
+/**
+ * Klasa opisująca obiekt typu Square. Jest to rysowany na ekranie kwadrat.
+ */
 public class Square{
     protected int size;
     protected BufferedImage texture;
