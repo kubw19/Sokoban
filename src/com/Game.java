@@ -23,6 +23,9 @@ public class Game extends JPanel implements KeyListener{
     private static int gridSize;
     private static int brickSize;
 
+    /**
+     * Funkcja przywracająca ekran menu startowego gry z dowolnego miejsca w grze
+     */
     public void returnToMenu(){
         obecnyPoziom = null;
         creatingLevel = false;
@@ -30,10 +33,18 @@ public class Game extends JPanel implements KeyListener{
         id = 0;
     }
 
+    /**
+     * Włącza lub wyłącza tryb tworzenia poziomów
+     * @param creatingLevel Parametr oznaczający stan kreatora, który chcemy włączyć.
+     */
     public void setCreatingLevel(boolean creatingLevel) {
         this.creatingLevel = creatingLevel;
     }
 
+    /**
+     * Funkcja zwracająca wartość typu boolean oznaczającą stan używania kreatora poziomów
+     * @return boolean Stan używania kreatora poziomów
+     */
     public boolean isCreatingLevel() {
         return creatingLevel;
     }
@@ -43,33 +54,53 @@ public class Game extends JPanel implements KeyListener{
     private Window window;
     private Button nextLevelButton;
 
+    /**
+     * Funcja ustawiająca obiekt typu Window, w którym rysowany jest panel Game
+     * @param window referencja na obiekt Window
+     */
     public void setWindow(Window window) {
         this.window = window;
     }
 
-    public Window getWindow(){
-        return window;
-    }
-
+    /**
+     * Funkcja przekształcająca współrzędna podaną względem środa ekranu na współrzędna względem układu używanego przez bilbiotekę swing
+     *
+     * @param x współrzędna x
+     * @param y współrzędna y
+     * @return zwraca współrzędną  względem układu używanego przez bilbiotekę swing
+     */
     public static Vector2d getNormalizedPosition(int x, int y){
         Vector2d w = new Vector2d(x,y);
         w.setX(relativeX + x * gridSize - brickSize/2);
         w.setY((relativeY + y * (-1) * gridSize - brickSize/2));
         return w;
     }
+    /**
+     * Funkcja przekształcająca współrzędna podaną względem środa ekranu na współrzędna względem układu używanego przez bilbiotekę swing
+     * To przeciążenie przyjmuje zmienioną szerokość i wysokość obiektu, dla ktorego tworzymy współrzędną
+     * @param x współrzędna x
+     * @param y współrzędna y
+     * @param brickWidth szerokość obiektu
+     * @param brickHeight wysokość obiektu
+     * @return zwraca współrzędną  względem układu używanego przez bilbiotekę swing
+     */
     public static Vector2d getNormalizedPosition(int x, int y, int brickWidth, int brickHeight){
         Vector2d w = new Vector2d(x,y);
         w.setX(relativeX + x * gridSize - brickWidth/2);
         w.setY((relativeY + y * (-1) * gridSize - brickHeight/2));
         return w;
     }
+
+    /**
+     * Konstruktor tworzący nową instancję klasy Game
+     * @param scale skala z jaką rysowana jest gra
+     */
     public Game(int scale){
         this.scale = scale;
         addKeyListener(this);
         setFocusable(true);
         setFocusTraversalKeysEnabled(false);
 
-        //addMouseListener(menu);
         gridSize = 16 * scale;
         brickSize = 16 * scale;
         relativeX = 300 * scale / 2;
@@ -112,7 +143,6 @@ public class Game extends JPanel implements KeyListener{
             if (this.koniecGry()){
                 this.player.resetMoves();
                 repaint();
-               // menu.draw(gr);//zamiast tego pasuje wstawic menu po skonczeniu poziomu i jakoś opóźnić wyświetlanie żeby było widać skończony poziom
                 nextLevelButton.draw(gr);
             }
         }
@@ -147,11 +177,7 @@ public class Game extends JPanel implements KeyListener{
     }
     @Override
     public void keyReleased(KeyEvent e) { }
-    public static int getScale() {
-        return scale;
-    }
-    public static int getRelativeX() {return relativeX;}
-    public static int getRelativeY() {return relativeY;}
+
     public static int getGridSize() {return gridSize;}
     public static int getBrickSize() { return brickSize; }
     public Poziom getObecnyPoziom() { return obecnyPoziom; }
