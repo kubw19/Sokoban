@@ -18,6 +18,7 @@ public class Creator {
         game.setCreatingLevel(true);
         game.setObecnyPoziom(new Poziom(game));
         game.setPlayer(new Player(game,Game.getBrickSize(), game.getObecnyPoziom().getStartingPoint()));
+        game.getObecnyPoziom().setStartingPoint(null);
         objectsToSelect.add(new Brick(Game.getBrickSize(), game.getNormalizedPosition(-8, 3), game));
         objectsToSelect.add(new Box(Game.getBrickSize(), game.getNormalizedPosition(-8, 1), game));
         objectsToSelect.add(new Target(Game.getBrickSize(), game.getNormalizedPosition(-8, 0), game));
@@ -34,11 +35,8 @@ public class Creator {
         for(Square square : objectsToSelect){
             square.draw(gr);
         }
-
         game.getObecnyPoziom().draw(gr);
         game.getPlayer().draw(gr);
-        //game.getObecnyPoziom().setStartingPoint(null);
-
         saveLevelButton.draw(gr);
         exitButton.draw(gr);
 

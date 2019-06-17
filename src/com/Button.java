@@ -1,5 +1,9 @@
 package com;
 
+import fIgures.Box;
+import fIgures.Square;
+import fIgures.Target;
+
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.event.MouseEvent;
@@ -69,7 +73,16 @@ public class Button implements MouseListener{
             if(text == "NastepnyPoziom" || text == "Gra")game.startLevel();
             else if(text == "Kreator")Creator.startCreator(game);
             else if(text == "ZapiszPoziom"){
-                //if(game.getObecnyPoziom().getStartingPoint() == null)return;
+                if(game.getObecnyPoziom().getStartingPoint() == null)return;
+                int i=0;
+                for(Square square:game.getObecnyPoziom().getObjects()){
+                   if(square instanceof Target)i++;
+                }
+                int j=0;
+                for(Square square:game.getObecnyPoziom().getObjects()){
+                    if(square instanceof Box)j++;
+                }
+                if(i!=j||i==0)return;
                 game.getObecnyPoziom().saveLevel();
                 game.returnToMenu();
             }
