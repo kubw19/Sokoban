@@ -10,6 +10,11 @@ public class TextureSet {
     private BufferedImage activeImage;
     private BufferedImage image[] = new BufferedImage[16];
 
+    /**
+     * konstruktor klasy TextureSet. Tworzy obiekt tyou TextureSet
+     * zawiera wszystkie grafiki używane do animacji gracza
+     * @param player gracz którego animacje przechowuje ten obiekt
+     */
     public TextureSet(Player player) {
         String active[] = {"up1", "up2", "up1_push", "up2_push",
                 "down1", "down2", "down1_push", "down2_push",
@@ -25,9 +30,16 @@ public class TextureSet {
         activeImage = image[0];
         this.player = player;
     }
-    public BufferedImage getActive() {
-        return activeImage;
-    }
+
+    /**
+     * zwraca aktywną grafikę dla gracza
+     * @return BufferedImage z aktywną grafiką dla nowej klatki animacji
+     */
+    public BufferedImage getActive() {return activeImage; }
+    /**
+     * ustawia nową aktywną grafikę dla gracza zależną od kierunku ruchu i obecnej aktywnej grafiki
+     * @param dir kierunek ruchu w formacie String "UP", "DOWN","LEFT", "RIGHT"
+     */
     public void setActive(String dir) {
         Square collider = player.collisionDetection(dir);
         switch (dir) {
@@ -45,7 +57,7 @@ public class TextureSet {
                 break;
         }
     }
-    public void setNewActive(int i, Square collider) {
+    private void setNewActive(int i, Square collider) {
         i=i*4;
         if (collider==null) {
             if (activeImage == image[i]) {

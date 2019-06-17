@@ -16,7 +16,7 @@ public class Menu{
     public Menu(Game g){
         this.g = g;
         try {
-            background = ImageIO.read(new File("src/com/background.png"));
+            background = ImageIO.read(new File("src/com/resources/background.png"));
         }
         catch(IOException e){}
         startLevelButton = new Button(50,250, Game.getNormalizedPosition(0,1, 250, 50), g, "Gra");

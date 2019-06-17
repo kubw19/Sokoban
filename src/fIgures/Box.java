@@ -13,6 +13,12 @@ public class Box extends Square{
 
     private BufferedImage onTarget;
 
+    /**
+     * Konstruktor klasy Box tworzy obiekt skrzynki
+     * @param size rozmiar Boxa w pixelach
+     * @param position pozycja lewego górnego wierzchołka obietku na ekranie
+     * @param game panel gry w którym ma być wyświetlony obiekt
+     */
     public Box(int size, Vector2d position,Game game){
         super(size, position,game);
         try {
@@ -21,8 +27,12 @@ public class Box extends Square{
         }
         catch(IOException e){}
     }
-    public void draw(Graphics gr){
 
+    /**
+     * rysowanie obiektów na ekranie
+     * @param gr
+     */
+    public void draw(Graphics gr){
         this.graphics = gr;
         this.intersectionArea = new Rectangle(position.getX(), position.getY(), size, size);
         if(this.isOnTarget()){
@@ -30,64 +40,61 @@ public class Box extends Square{
         }else{
             this.graphics.drawImage(texture, position.getX(),position.getY(), size, size,null);
         }
-
     }
+
+    /**
+     * żądanie przesunięcia obiektu w górę
+     * @return true jeśli udało się przesunąć obiekt false jeśli droga jest zablokowana przez inny obiekt
+     */
     public boolean moveUp() {
-        System.out.println("Typ" + collisionDetection("UP"));
-        if(collisionDetection("UP") instanceof Brick ||collisionDetection("UP") instanceof Box) {
-            System.out.println("CEGLA");
-            return false;
-        }
+        if(collisionDetection("UP") instanceof Brick ||collisionDetection("UP") instanceof Box) return false;
         else if(collisionDetection("UP") instanceof Target) {
-            System.out.println("TARGET");
             position.moveUp();
             return true;
         }
         position.moveUp();
         return true;
     }
+    /**
+     * żądanie przesunięcia obiektu w dół
+     * @return true jeśli udało się przesunąć obiekt false jeśli droga jest zablokowana przez inny obiekt
+     */
     public boolean moveDown(){
-        System.out.println("Typ" + collisionDetection("DOWN"));
-        if(collisionDetection("DOWN") instanceof Brick||collisionDetection("DOWN") instanceof Box) {
-            System.out.println("CEGLA");
-            return false;
-        }
+        if(collisionDetection("DOWN") instanceof Brick||collisionDetection("DOWN") instanceof Box)return false;
         else if(collisionDetection("DOWN") instanceof Target) {
-            System.out.println("TARGET");
             position.moveDown();
             return true;
         }
         position.moveDown();
         return true;
     }
+    /**
+     * żądanie przesunięcia obiektu w prawo
+     * @return true jeśli udało się przesunąć obiekt false jeśli droga jest zablokowana przez inny obiekt
+     */
     public boolean moveRight(){
-        System.out.println("Typ" + collisionDetection("RIGHT"));
-        if(collisionDetection("RIGHT") instanceof Brick||collisionDetection("RIGHT") instanceof Box) {
-            System.out.println("CEGLA");
-            return false;
-        }
+        if(collisionDetection("RIGHT") instanceof Brick||collisionDetection("RIGHT") instanceof Box) return false;
         else if(collisionDetection("RIGHT") instanceof Target) {
-            System.out.println("TARGER");
             position.moveRight();
             return true;
         }
         position.moveRight();
         return true;
     }
+    /**
+     * żądanie przesunięcia obiektu w lewo
+     * @return true jeśli udało się przesunąć obiekt false jeśli droga jest zablokowana przez inny obiekt
+     */
     public boolean moveLeft(){
-        System.out.println("Typ" + collisionDetection("LEFT"));
-        if(collisionDetection("LEFT") instanceof Brick||collisionDetection("LEFT") instanceof Box) {
-            System.out.println("CEGLA");
-            return false;
-        }
+        if(collisionDetection("LEFT") instanceof Brick||collisionDetection("LEFT") instanceof Box) return false;
         else if(collisionDetection("LEFT") instanceof Target) {
-            System.out.println("TARGER");
             position.moveLeft();
             return true;
         }
         position.moveLeft();
         return true;
     }
+
     private boolean isOnTarget(){
         Rectangle newPosition = new Rectangle(this.getX(), this.getY(), Game.getBrickSize(), Game.getBrickSize());
         for(Square square : game.getObecnyPoziom().getObjects()) {

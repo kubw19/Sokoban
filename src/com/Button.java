@@ -34,7 +34,7 @@ public class Button implements MouseListener{
 
 
                 try {
-                textureMain = ImageIO.read(new File("src/com/button" + text + ".png"));
+                textureMain = ImageIO.read(new File("src/com/resources/button" + text + ".png"));
                 texture = textureMain;
                 }
                 catch(IOException e){}

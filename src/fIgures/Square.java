@@ -12,38 +12,43 @@ public class Square{
     protected Graphics graphics;
     protected Vector2d position;
     protected Game game;
+    /**
+     * konstruktor obiektu generycznej klasy Square
+     * @param size rozmiar obiektu w pixelach
+     * @param position pozycja lewego górnego wierzchołka obietku na ekranie
+     * @param game panel gry w którym ma być wyświetlony obiekt
+     */
     public Square(int size, Vector2d position,Game game){
         this.size = size;
         this.position = position;
         this.game=game;
         this.intersectionArea = new Rectangle(position.getX(), position.getY(), size, size);
     }
-    public void draw(Graphics gr, Vector2d w){
-        this.graphics = gr;
-        this.intersectionArea = new Rectangle(w.getX(), w.getY(), size, size);
-        this.position = w;
-        this.graphics.drawImage(texture, w.getX(),w.getY(), size, size,null);
-    }
+    /**
+     * rysuje obiekt
+     * @param gr
+     */
     public void draw(Graphics gr){
         this.graphics = gr;
         this.intersectionArea = new Rectangle(position.getX(), position.getY(), size, size);
         this.graphics.drawImage(texture, position.getX(),position.getY(), size, size,null);
     }
-    public String toString(){
-        return "(" + position.getX() + ", " + position.getY() + ")";
-    }
-    public void setX(int x){
-        this.position.setX(x);
-    }
-    public void setY(int y){
-        this.position.setY(y);
-    }
-    public int getX(){
-        return this.position.getX();
-    }
-    public int getY(){
-        return this.position.getY();
-    }
+
+    /**
+     * @return współrzędna x pozycji obiektu
+     */
+    public int getX(){ return this.position.getX(); }
+
+    /**
+     * @return współrzędna y pozycji obiektu
+     */
+    public int getY(){ return this.position.getY(); }
+
+    /**
+     * wykrywa czy po ruchu we wskazanym kierunku zajdzie kolizja z innym obiektem
+     * @param dir kierunek sprawdzania kolizji "UP","DOWN","LEFT","RIGHT"
+     * @return zwraca obiekt z którym zachodzi kolizja lub null jeśli brak kolizji
+     */
     public Square collisionDetection(String dir){
         Rectangle newPosition = null;
         switch(dir) {
@@ -62,13 +67,14 @@ public class Square{
         }
         Square temp=null;
         for(Square square : game.getObecnyPoziom().getObjects()){
-            if(square.intersectionArea.intersects(newPosition)){
-                temp=square;
-            }
+            if(square.intersectionArea.intersects(newPosition))temp=square;
         }
         return temp;
      }
 
+    /**
+     * @return pozycja obiektu przechowywana w obiekcie typu Vector2d
+     */
      public Vector2d getPosition(){
         return position;
      }
