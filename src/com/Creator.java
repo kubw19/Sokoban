@@ -23,8 +23,8 @@ public class Creator {
         objectsToSelect.add(new Box(Game.getBrickSize(), game.getNormalizedPosition(-8, 1), game));
         objectsToSelect.add(new Target(Game.getBrickSize(), game.getNormalizedPosition(-8, 0), game));
         objectsToSelect.add(new StartingPoint(Game.getBrickSize(), game.getNormalizedPosition(-8, 2), game));
-        saveLevelButton = new Button(50,250, Game.getNormalizedPosition(7,2, 250, 50), game, "ZapiszPoziom");
-        exitButton = new Button(50,250, Game.getNormalizedPosition(7,1, 250, 50), game, "LeaveCreator");
+        saveLevelButton = new Button(40,150, new Vector2d(game.getWidth()/2 - 155,game.getHeight() - 40), game, "ZapiszPoziom");
+        exitButton = new Button(40,150, new Vector2d(game.getWidth()/2 + 5 ,game.getHeight() - 40), game, "LeaveCreator");
 
     }
 
