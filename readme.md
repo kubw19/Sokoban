@@ -1,5 +1,4 @@
 # Sokoban
-Simple 
 Inside the app you can play some basic levels and you can also crate your own levels(but remember that game does not check if level is solvable).
 ## Creating level
 While cerating new levels you need to add at least one target(red dot), one box and exactly one Starting position for player(you cannot add two, if you try to add second one first will disappear).
