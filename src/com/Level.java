@@ -6,21 +6,21 @@ import java.util.ArrayList;
 
 import fIgures.*;
 
-public class Poziom {
+public class Level {
     private int winCondition;
     private Vector2d startingPoint;
     private ArrayList<Square> objects;
     private Game game;
     private String id;
 
-    public Poziom(Game game, String id)throws IOException{
+    public Level(Game game, String id)throws IOException{
         this.id = id;
         objects = new ArrayList<>();
         this.game = game;
         winCondition=0;
         this.build();
     }
-    public Poziom(Game game){
+    public Level(Game game){
         this.game=game;
         winCondition=0;
         objects = new ArrayList<>();

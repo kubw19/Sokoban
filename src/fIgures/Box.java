@@ -97,7 +97,7 @@ public class Box extends Square{
 
     private boolean isOnTarget(){
         Rectangle newPosition = new Rectangle(this.getX(), this.getY(), Game.getBrickSize(), Game.getBrickSize());
-        for(Square square : game.getObecnyPoziom().getObjects()) {
+        for(Square square : game.getCurrentLevel().getObjects()) {
             if (square instanceof Target) {
                 if (square.intersectionArea.intersects(newPosition)) {
                     return true;

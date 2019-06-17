@@ -29,7 +29,7 @@ public class Target extends Square {
      */
     public void isOccupied(){
         Rectangle newPosition = new Rectangle(this.getX(), this.getY(), Game.getBrickSize(), Game.getBrickSize());
-        for(Square square : game.getObecnyPoziom().getObjects()) {
+        for(Square square : game.getCurrentLevel().getObjects()) {
             if (square instanceof Box) {
                 if (square.intersectionArea.intersects(newPosition)) {
                     occupied = true;

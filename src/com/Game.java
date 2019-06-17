@@ -15,7 +15,7 @@ import javax.swing.*;
 public class Game extends JPanel implements KeyListener{
 
     private Player player;
-    private Poziom obecnyPoziom;
+    private Level currentLevel;
     private Menu menu;
     private static int scale;
     private static int relativeX;
@@ -27,7 +27,7 @@ public class Game extends JPanel implements KeyListener{
      * Funkcja przywracająca ekran menu startowego gry z dowolnego miejsca w grze
      */
     public void returnToMenu(){
-        obecnyPoziom = null;
+        currentLevel = null;
         creatingLevel = false;
         player = null;
         id = 0;
@@ -105,7 +105,7 @@ public class Game extends JPanel implements KeyListener{
         brickSize = 16 * scale;
         relativeX = 300 * scale / 2;
         relativeY = 300 /16 * 9 * scale/ 2 + 24 * scale;
-        obecnyPoziom = null;
+        currentLevel = null;
         player = null;
         menu = new Menu(this);
         nextLevelButton = new Button(50,250, new Vector2d(getWidth()/2,0), this, "NastepnyPoziom");
@@ -113,11 +113,11 @@ public class Game extends JPanel implements KeyListener{
     }
     public void startLevel(){
         try {
-            obecnyPoziom=new Poziom(this,(++id).toString());
+            currentLevel=new Level(this,(++id).toString());
         }catch (FileNotFoundException e) { this.returnToMenu(); } catch (IOException e) { }
 
-        if(obecnyPoziom != null)
-            player = new Player(this,brickSize, obecnyPoziom.getStartingPoint());
+        if(currentLevel != null)
+            player = new Player(this,brickSize, currentLevel.getStartingPoint());
 
         repaint();
     }
@@ -127,15 +127,15 @@ public class Game extends JPanel implements KeyListener{
         if(creatingLevel == true){
             Creator.displayCreator(gr, this);
         }
-        else if(obecnyPoziom == null || player == null){
+        else if(currentLevel == null || player == null){
             menu.draw(gr);
         }
         else {
             gr.setColor(new Color(10, 77, 46));
             gr.fillRect(0, 0, getWidth(), getHeight());
-            obecnyPoziom.draw(gr);
+            currentLevel.draw(gr);
             player.draw(gr);
-            for (Square square : this.getObecnyPoziom().getObjects()) {
+            for (Square square : this.getCurrentLevel().getObjects()) {
                 if (square instanceof Target) {
                     ((Target) square).isOccupied();
                 }
@@ -180,20 +180,20 @@ public class Game extends JPanel implements KeyListener{
 
     public static int getGridSize() {return gridSize;}
     public static int getBrickSize() { return brickSize; }
-    public Poziom getObecnyPoziom() { return obecnyPoziom; }
-    public void setObecnyPoziom(Poziom obecnyPoziom) { this.obecnyPoziom = obecnyPoziom;}
+    public Level getCurrentLevel() { return currentLevel; }
+    public void setCurrentLevel(Level currentLevel) { this.currentLevel = currentLevel;}
     public void setPlayer(Player player){this.player = player;}
     public Player getPlayer() { return player; }
     private boolean koniecGry(){
         int winPoints=0;
-        for(Square square : this.getObecnyPoziom().getObjects()) {
+        for(Square square : this.getCurrentLevel().getObjects()) {
             if(square instanceof Target){
                 if(((Target) square).getOccupied()){
                     winPoints++;
                 }
             }
         }
-        if(winPoints==this.obecnyPoziom.getWinCondition()){
+        if(winPoints==this.currentLevel.getWinCondition()){
             return true;
         }
         return false;

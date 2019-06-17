@@ -66,7 +66,7 @@ public class Square{
                 break;
         }
         Square temp=null;
-        for(Square square : game.getObecnyPoziom().getObjects()){
+        for(Square square : game.getCurrentLevel().getObjects()){
             if(square.intersectionArea.intersects(newPosition))temp=square;
         }
         return temp;
