@@ -8,6 +8,10 @@ public class Window {
     public static int scale = 4;
     public JFrame frame;
 
+    /**
+     * konstruktor okna tworzący JFrame pod obslugę graficzną
+     * @param g gra wyświetlana na tym oknie
+     */
     public Window(Game g){
         frame = new JFrame();
         frame.setResizable(false);

@@ -6,11 +6,17 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
+
 public class Menu{
     private Button startLevelButton;
     private Button levelCreatorButton;
     private Game g;
     private BufferedImage background;
+
+    /**
+     * konstruktor Klasy Menu tworzący obiekt klasy Menu
+     * @param g
+     */
     public Menu(Game g){
         this.g = g;
         try {
@@ -21,6 +27,11 @@ public class Menu{
         levelCreatorButton = new Button(50,250, Game.getNormalizedPosition(0,0, 250, 50), g, "Kreator");
 
     }
+
+    /**
+     * metoda rysująca menu gry
+     * @param gr
+     */
     public void draw(Graphics gr){
         gr.drawImage(background, 0,0 , g.getWidth(), g.getHeight() ,null);
         startLevelButton.draw(gr);
