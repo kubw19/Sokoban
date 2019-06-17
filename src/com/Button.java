@@ -70,9 +70,10 @@ public class Button implements MouseListener{
     @Override
     public void mouseReleased(MouseEvent e) {
         if(intersectionArea.contains(e.getPoint())) {
-            if(text == "NastepnyPoziom" || text == "Gra")game.startLevel();
-            else if(text == "Kreator")Creator.startCreator(game);
-            else if(text == "ZapiszPoziom"){
+            if((text == "NastepnyPoziom" || text == "Gra") && !game.isCreatingLevel())
+                game.startLevel();
+            else if(text == "Kreator" && !game.isCreatingLevel())Creator.startCreator(game);
+            else if(text == "ZapiszPoziom" && game.isCreatingLevel()){
                 if(game.getCurrentLevel().getStartingPoint() == null)return;
                 int i=0;
                 for(Square square:game.getCurrentLevel().getObjects()){
@@ -86,7 +87,7 @@ public class Button implements MouseListener{
                 game.getCurrentLevel().saveLevel();
                 game.returnToMenu();
             }
-            else if(text == "LeaveCreator"){
+            else if(text == "LeaveCreator" && game.isCreatingLevel()){
                 game.returnToMenu();
             }
         }

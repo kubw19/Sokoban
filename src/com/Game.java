@@ -12,6 +12,9 @@ import java.io.FileReader;
 import java.io.IOException;
 import javax.swing.*;
 
+/**
+ * Klasa opisująca panel gry, na którym rysowane są elementy
+ */
 public class Game extends JPanel implements KeyListener{
 
     private Player player;
@@ -22,6 +25,7 @@ public class Game extends JPanel implements KeyListener{
     private static int relativeY;
     private static int gridSize;
     private static int brickSize;
+    private boolean inMenu = true;
 
     /**
      * Funkcja przywracająca ekran menu startowego gry z dowolnego miejsca w grze
@@ -31,6 +35,7 @@ public class Game extends JPanel implements KeyListener{
         creatingLevel = false;
         player = null;
         id = 0;
+        inMenu = true;
     }
 
     /**
@@ -38,6 +43,7 @@ public class Game extends JPanel implements KeyListener{
      * @param creatingLevel Parametr oznaczający stan kreatora, który chcemy włączyć.
      */
     public void setCreatingLevel(boolean creatingLevel) {
+        inMenu = false;
         this.creatingLevel = creatingLevel;
     }
 
@@ -111,6 +117,10 @@ public class Game extends JPanel implements KeyListener{
         nextLevelButton = new Button(50,250, new Vector2d(getWidth()/2,0), this, "NastepnyPoziom");
 
     }
+
+    /**
+     * Uruchamia nastepny poziom
+     */
     public void startLevel(){
         try {
             currentLevel=new Level(this,(++id).toString());
@@ -118,7 +128,7 @@ public class Game extends JPanel implements KeyListener{
 
         if(currentLevel != null)
             player = new Player(this,brickSize, currentLevel.getStartingPoint());
-
+        inMenu = false;
         repaint();
     }
     public void paint(Graphics gr){
@@ -135,17 +145,25 @@ public class Game extends JPanel implements KeyListener{
             gr.fillRect(0, 0, getWidth(), getHeight());
             currentLevel.draw(gr);
             player.draw(gr);
+
+
+
             for (Square square : this.getCurrentLevel().getObjects()) {
                 if (square instanceof Target) {
                     ((Target) square).isOccupied();
                 }
             }
             if (this.koniecGry()){
-                this.player.resetMoves();
                 repaint();
                 nextLevelButton.draw(gr);
             }
+            gr.setColor(new Color(247, 54, 54));
+            gr.setFont(new Font("TimesRoman", Font.BOLD, 20));
+            gr.drawString("Poziom: "+ id, 1000,20);
+            gr.setColor(Color.WHITE);
+            gr.drawString("Liczba ruchów: "+player.getMoves(), 1000,40);
         }
+
         repaint();
     }
     @Override
@@ -155,21 +173,28 @@ public class Game extends JPanel implements KeyListener{
         if(e.getKeyCode() == KeyEvent.VK_ENTER && creatingLevel){
             Creator.newElement(this);
         }
+        else if(e.getKeyCode() == KeyEvent.VK_ENTER && !creatingLevel && koniecGry()){
+            startLevel();
+        }
+
+        if(e.getKeyCode() == KeyEvent.VK_ESCAPE){
+            returnToMenu();
+        }
 
         if(e.getKeyCode() == KeyEvent.VK_DELETE && creatingLevel){
             Creator.deleteElement(this);
         }
 
-        if(e.getKeyCode() == KeyEvent.VK_RIGHT){
+        if(e.getKeyCode() == KeyEvent.VK_RIGHT  && !inMenu){
             player.moveRight();
         };
-        if(e.getKeyCode() == KeyEvent.VK_LEFT){
+        if(e.getKeyCode() == KeyEvent.VK_LEFT  && !inMenu){
             player.moveLeft();
         };
-        if(e.getKeyCode() == KeyEvent.VK_UP){
+        if(e.getKeyCode() == KeyEvent.VK_UP  && !inMenu){
             player.moveUp();
         };
-        if(e.getKeyCode() == KeyEvent.VK_DOWN){
+        if(e.getKeyCode() == KeyEvent.VK_DOWN && !inMenu){
             player.moveDown();
         }
 
@@ -178,11 +203,40 @@ public class Game extends JPanel implements KeyListener{
     @Override
     public void keyReleased(KeyEvent e) { }
 
+    /**
+     * Getter gridSize
+     * @return rozmiar siatki ekranu
+     */
     public static int getGridSize() {return gridSize;}
+
+    /**
+     * Getter brickSize
+     * @return rozmiar pojedynczego bloku na ekranie
+     */
     public static int getBrickSize() { return brickSize; }
+
+    /**
+     *
+     * @return Referencja na obecny poziom
+     */
     public Level getCurrentLevel() { return currentLevel; }
+
+    /**
+     * Ustawia obecny poziom
+     * @param currentLevel referemcja na poziom do ustawienia jako obecny
+     */
     public void setCurrentLevel(Level currentLevel) { this.currentLevel = currentLevel;}
+
+    /**
+     * Ustawia obecnego gracza
+     * @param player referencja na gracza Player
+     */
     public void setPlayer(Player player){this.player = player;}
+
+    /**
+     * Zwraca aktualnego gracza
+     * @return Aktualny gracz
+     */
     public Player getPlayer() { return player; }
     private boolean koniecGry(){
         int winPoints=0;

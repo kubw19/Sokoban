@@ -96,7 +96,8 @@ public class Player extends Square {
     }
 
     /**
-     * zresetowanie liczby ruchów gracza na poziomie
+     * Funkcja zwracająca liczbę ruchów gracza w danym poziomie
+     * @return int Liczba ruchów danego gracza
      */
-    public void resetMoves(){this.moves=0;}
+    public int getMoves(){return this.moves;}
 }
