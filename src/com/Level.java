@@ -13,6 +13,12 @@ public class Level {
     private Game game;
     private String id;
 
+    /**
+     * konstruktor Level tworzący obiekt klasy Level
+     * @param game panel gry w którym ma być wyświetlany poziom
+     * @param id numer poziomu używany jako nazwa pliku (id+".xtx")
+     * @throws IOException
+     */
     public Level(Game game, String id)throws IOException{
         this.id = id;
         objects = new ArrayList<>();
@@ -20,12 +26,23 @@ public class Level {
         winCondition=0;
         this.build();
     }
+
+    /**
+     *  konstruktor Level tworzący obiekt klasy Level
+     * @param game panel gry w którym ma być wyświetlany poziom
+     */
     public Level(Game game){
         this.game=game;
         winCondition=0;
         objects = new ArrayList<>();
         startingPoint=Game.getNormalizedPosition(0,0);
     }
+
+    /**
+     * metoda dodająca obiekty do listy objects poziomu
+     * obiekty dodawane są z pliku (id+".txt")
+     * @throws IOException
+     */
     private void build() throws IOException{
         BufferedReader reader;
             reader = new BufferedReader(new FileReader(id + ".txt"));
@@ -49,21 +66,50 @@ public class Level {
                 }
             }
     }
+
+    /**
+     * zwraca liczbę skrzyń jaka musi być na polach Target żeby zakończyć poziom
+     * @return
+     */
     public int getWinCondition(){
         return winCondition;
     }
+
+    /**
+     * rysuje wszystkie obiekty poziomu
+     * @param gr
+     */
     public void draw(Graphics gr) {
         for (Square square : objects) {
                 square.draw(gr);
         }
     }
+
+    /**
+     * @return startingPoint jako obiekt klasy Vector2d
+     */
     public Vector2d getStartingPoint(){
         return startingPoint;
     }
+
+    /**
+     *
+     * @return lista(ArrayList) obiektów należączych do danego poziomu
+     */
     public ArrayList<Square> getObjects(){return objects;}
+
+    /**
+     * dodanie elementu do listy objects poziomu
+     * @param square dodawany element
+     */
     public void addElement(Square square){
         objects.add(square);
     }
+
+    /**
+     * usuwa element o wskazanej pozycji
+     * @param position pozycja elementu który ma zostać usunięty
+     */
     public void removeElement(Vector2d position){
         Square removed=null;
         for(Square square:objects){
@@ -72,9 +118,19 @@ public class Level {
         if(removed!=null)
         objects.remove(removed);
     }
+
+    /**
+     * ustawienie pozycji początkowej gracza
+     * @param position pozycja początkowa gracza
+     */
     public void setStartingPoint(Vector2d position){
         startingPoint=position;
     }
+
+    /**
+     * zapisanie poziomu do pliku o pierwszym wolnym indeksie
+     * ograniczenie liczby istniejących poziomów 100
+     */
     public void saveLevel(){
         BufferedReader reader;
         for(int i=1;i<100;i++) {
