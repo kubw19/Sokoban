@@ -253,6 +253,13 @@ public class Game extends JPanel implements KeyListener{
         return false;
     }
 
+    /**
+     * Getter atrybutu inMenu, oznacza czy gra wyświetla menu główne
+     * @return wartość, czy gra wyświetla menu główne
+     */
+    public boolean isInMenu(){
+        return inMenu;
+    }
 
 
 
