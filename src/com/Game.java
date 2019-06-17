@@ -77,7 +77,7 @@ public class Game extends JPanel implements KeyListener{
         obecnyPoziom = null;
         player = null;
         menu = new Menu(this);
-        nextLevelButton = new Button(50,250, Game.getNormalizedPosition(-7,0, 250, 50), this, "NastepnyPoziom");
+        nextLevelButton = new Button(50,250, new Vector2d(getWidth()/2,0), this, "NastepnyPoziom");
 
     }
     public void startLevel(){
