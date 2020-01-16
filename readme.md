@@ -12,4 +12,4 @@ Format of saved level is:
 * B;x;y - position of Box (there must be exactly as many of those as Targets)
 
 ## JavaDocs
-https://kubw19.github.io/graNaJTP/
+https://kubw19.github.io/Sokoban/
